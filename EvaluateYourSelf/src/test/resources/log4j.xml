@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.skycode.springmvc">
+	<logger name="com.evaluateyourself.springmvc">
 		<level value="info" />
 	</logger>
 	

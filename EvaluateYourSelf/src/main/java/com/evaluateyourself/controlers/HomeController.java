@@ -1,17 +1,27 @@
 package com.evaluateyourself.controlers;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import org.hibernate.stat.SessionStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+import com.evaluateyourself.model.Users;
+import com.evaluateyourself.service.UsersManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 /**
@@ -22,34 +32,54 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	private ApplicationContext context; 
-	private DriverManagerDataSource dataSource;
+
+	@Autowired
+	DriverManagerDataSource dataSource;
+	
+	@Autowired
+	UsersManager manager;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	public HomeController() {
-		context = new ClassPathXmlApplicationContext("root-context.xml");
-		dataSource = (DriverManagerDataSource)context.getBean("myDataSource");
+		//context = new ClassPathXmlApplicationContext("root-context.xml");
+		//dataSource = (DriverManagerDataSource)context.getBean("myDataSource");
 	} 
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
-	}
+    public List<Users> populateUsers() 
+    {
+        List<Users> users = manager.getAllUsers();
+        logger.info("Pobra³em usersow " + Integer.toString(users.size()));
+        return users;
+    }
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test(Model model){
-		String greetings = "Greetings, Spring MVC! and Postgresql is " + dataSource.getUrl();
+		boolean isClosed = false;
+		try {
+			isClosed = dataSource.getConnection().isClosed();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		String greetings =  "";
+		if(isClosed)
+		{
+			greetings = greetings + " And is closed";
+		}
+		else
+		{
+			try {
+				greetings = greetings + " And is open on port " + dataSource.getConnection().getMetaData().getUserName() + "asdaddwefscdd";
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("allUsers", this.populateUsers());
+		//greetings
 		model.addAttribute("message", greetings);
-		return "test";
+		return "usersRegistration";
 	}
 	
 }
