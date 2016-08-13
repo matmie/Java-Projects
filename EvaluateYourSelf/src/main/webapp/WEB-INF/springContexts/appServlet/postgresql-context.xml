@@ -17,7 +17,7 @@
 		<property name="location" value="/resources/properties/db.properties" />
 
 	</bean>
-	<bean id="entintyManagerFactoryBean"
+	<bean id="entintyManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
 		<!-- This makes /META-INF/persistence.xml is no longer necessary -->
@@ -41,12 +41,20 @@
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	<bean
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<!-- sun:DataSource(I) wywodza sie liczne klasy do oznaczenia zbioru danych 
+		rekomendowane do obsługi puli połączeń są ComboPooledDataSource, BasicDataSource 
+		
+	-->
 	<bean id="myDataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${driverClassName}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
+		<property name="maxActive" value="15" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWait" value="5000" />
 		<!-- <property name="initialPoolSize" value="3"></property> <property name="minPoolSize" 
 			value="5"></property> <property name="maxPoolSize" value="30"></property> 
 			<property name="acquireIncrement" value="1"></property> -->
@@ -59,7 +67,7 @@
 		through JtaTransactionManager) is necessary for accessing multiple transactional 
 		resources within the same transaction. -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entintyManagerFactoryBean" />
+		<property name="entityManagerFactory" ref="entintyManagerFactory" />
 	</bean>
 
 </beans>

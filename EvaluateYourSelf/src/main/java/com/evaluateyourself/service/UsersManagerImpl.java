@@ -18,14 +18,15 @@ import com.evaluateyourself.model.Users;
 @Service
 public class UsersManagerImpl implements UsersManager {
 	
-    @Autowired
+	@Autowired
 	UsersDAO usersdao;
+	
 	/* (non-Javadoc)
 	 * @see com.evaluateyourself.service.UsersManager#getAllUsers()
 	 */
 	@Override
 	public List<Users> getAllUsers() {
-		return usersdao.getAllUsers();
+		return usersdao.findAll();
 	}
 
 	/* (non-Javadoc)
@@ -33,7 +34,15 @@ public class UsersManagerImpl implements UsersManager {
 	 */
 	@Override
 	public void addUser(Users user) {
-		usersdao.addUser(user);
+		usersdao.save(user);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.evaluateyourself.service.UsersManager#getAllInfo()
+	 */
+	@Override
+	public String getAllInfo() {
+		return usersdao.getAllInfo();
 	}
 
 }

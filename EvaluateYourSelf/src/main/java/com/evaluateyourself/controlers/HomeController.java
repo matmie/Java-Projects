@@ -3,6 +3,7 @@ package com.evaluateyourself.controlers;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,10 +26,12 @@ public class HomeController {
 	
 
 	@Autowired
-	DriverManagerDataSource dataSource;
+	BasicDataSource dataSource;
 	
 	@Autowired
 	UsersManager manager;
+	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -67,7 +70,8 @@ public class HomeController {
 				e.printStackTrace();
 			}
 		}
-		model.addAttribute("allUsers", this.populateUsers());
+		//model.addAttribute("allUsers", this.populateUsers());
+		model.addAttribute("info", manager.getAllInfo());
 		//greetings
 		model.addAttribute("message", greetings);
 		return "usersRegistration";

@@ -22,9 +22,8 @@
 	</head>
 	 
 	<body>
-	    <br/>
-	     
-	    <table id="listOfUsers" border="1">
+	    <h7>sfsdfsdd ${info}</h7>
+	    <%-- <table id="listOfUsers" border="1">
 	    <tr>
 	        <td>ID</td>
 	        <td>First Name</td>
@@ -41,6 +40,6 @@
 	        <td>${user.uslogin}</td>
 	      </tr>
 	    </c:forEach>
-	    </table>
+	    </table> --%>
 	</body>
 </html>

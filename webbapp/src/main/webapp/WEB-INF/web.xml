@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <servlet>
+    <!--Główny serwlet aplikacji, który odpowiada za przyjmowanie zgłoszeń z przeglądarki poprzez ustalenie adresu zgłoszenia 
+    oraz dopasowanie odpowiedniego kontrolera do obsługi zgłoszenia  -->
+    <servlet-name>appServlet</servlet-name> <!-- Nazwa serwletu -->
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> <!-- Klasa która jest implementacją serwletu -->
+    <load-on-startup>1</load-on-startup> <!-- Priorytet ładowania serwletu im mniejsza liczba tym serwlet będzie w pierwszej kolejności załadowany --> 
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>appServlet</servlet-name><!-- Oznacza nazwę serwletu, który zostanie uruchomiony kiedy ścieżka <url-pattern> 
+    zostanie dopasowana do tego wpisu -->
+    <url-pattern>/</url-pattern><!-- To jest podstawowa ścieżka, innymi słowy, jeżeli żaden inny serwlet nie zostanie dopasowany
+    to wówczas ten serlet zostanie wywolany bo "/" rozpoczyna całą aplikację. Mechanizm dopasowujący serwlet do wywołania działa w taki sposób, że
+    szuka zawsze najdłuższego dopasowania do ścieżki -->
+  </servlet-mapping>
+</web-app>

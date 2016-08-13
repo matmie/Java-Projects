@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.evaluateyourself.*" />
+	<context:component-scan base-package="com.evaluateyourself." />
 	<beans:import resource="postgresql-context.xml" />
 	
 </beans:beans>

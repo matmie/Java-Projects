@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.evaluateyourself</groupId>
+	<artifactId>webbapp</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Simple WebStore </name>
+	<description>Simple WebApplication using "Spring MVC: Beginner's Guide"</description>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.0.3.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+			<!-- compile - używany do kompilacji[domyślnie] -->
+			<!-- provided - jak compile, z tym, że w tym przypadku oczekujemy, że 
+				np serwer ma to narzędzie podczas uruchomienia aplikacji. Uzywany do kompilacji 
+				i testowania. Innymi słowy zaleznosc nie zostanie dodana do wynikowej paczki projektu -->
+			<!-- runtime - biblioteka używana działania i testowania, ale nie do kompilacji -->
+			<!-- test - tylko do fazy testowania -->
+			<!-- system [tak samo jak provided] - wskazanie na pliki bezpośrednio w systemie-->
+			<!-- import - jeżeli mamy już jakiś projekt, to możemy wskazac na tę zależnośc-->
+		</dependency>
+	</dependencies>
+</project>
