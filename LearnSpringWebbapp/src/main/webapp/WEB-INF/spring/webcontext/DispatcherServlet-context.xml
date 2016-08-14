@@ -11,8 +11,15 @@
 		ExceptionHandlerExceptionResolver Są one niezbędne do przekazywania przez 
 		Springa MVC żądań do kontrolerów. Zapewnia to dostęp do wielu przydatnych 
 		adnotacji. -->
-	<annotation-driven />
-
+	<!--enable-matrix-variables="true" wsparcie dla zmiennych tablicowych URI 
+		w kontrolerach -->
+	<annotation-driven enable-matrix-variables="true" />
+	<!--context:component-scan wskazuje na pakiet, który będzie root-em ustawionyum 
+		do poszukiwań klas kontrolerów(@Controller), repozytoriów(@Repository), serwisów(@Service) 
+		Tworząc adnotacje @Autowired w jakiejś klasie mechanizm Spring-a będzie szukał 
+		klasy, która jest opatrzona odpowienimi adnotacjami(Controller, Repository, 
+		Service) zaczynając od tego katalogu -->
+	<context:component-scan base-package="com.evaluateyourself.webstore" />
 
 	<resources mapping="/resources/**" location="/resources/" />
 
@@ -24,11 +31,13 @@
 			dla Resolver-a oznacza tyle, że ścieżka do widoku będzie następująca /WEB-INF/views/welcome.jsp -->
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	<!--context:component-scan wskazuje na pakiet, który będzie root-em ustawionyum 
-		do poszukiwań klas kontrolerów(@Controller), repozytoriów(@Repository), serwisów(@Service) 
-		Tworząc adnotacje @Autowired w jakiejś klasie mechanizm Spring-a będzie szukał 
-		klasy, która jest opatrzona odpowienimi adnotacjami(Controller, Repository, 
-		Service) zaczynając od tego katalogu -->
-	<context:component-scan base-package="com.evaluateyourself.webstore" />
+	<!-- Potrzebny żeby używac pliku *.properties do definiowania label-ów pól 
+		na formularzach i nie tylko. Używany przez znacznik <spring:message code="wpis 
+		z pliku *.properties" /> -->
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basename" value="messages" />
+	</beans:bean>
+
 
 </beans:beans>

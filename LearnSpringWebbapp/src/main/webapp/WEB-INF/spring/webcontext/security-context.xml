@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	<!-- Konfiguracja monitorowanych stron przez spring security -->
+	<security:http auto-config="true">
+		<!-- Karze przechwytywac każde żądanie HTTP do scieżki /products/add i 
+			zezwalac na dostep tylko uzytkownikom, ktorym nadan jest rola ROLE_ADMIN -->
+		<security:intercept-url pattern="/products/add"
+			access="ROLE_ADMIN" />
+		<!-- login-page wskazuje adres, pod który żądanie powinno zostac przekierowane, 
+			jesli użytkownikowi ma zostac wyswietlony ekran logowania. Jego wartosc musi 
+			byc taka sama jak mapowanie w kontrolerze LoginController. -->
+		<!-- default-target-url wkazuje strone, która ma byc wyswietlona uzytkownikowi 
+			po prawidlowym zalogowaniu -->
+		<!-- authentication-failure-url wskazuje URL pod ktory ma byc przekierowanie 
+			w przypadku nieudanego logowania -->
+		<security:form-login login-page="/login"
+			default-target-url="/products/add" authentication-failure-url="/loginfailed" />
+		<!-- logout-succes-url gdzie przekierowac po pomyslnym wylogowaniu -->
+		<security:logout logout-success-url="/logout" />
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<!-- Dodajemy tutaj liste użytkownikow. Mozna nadac uzytkownikowi wiecej 
+					rol, ale nalezy pamietac, zeby rozdzielic je przecinkiem -->
+				<security:user name="Admin" authorities="ROLE_ADMIN"
+					password="Admin123" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

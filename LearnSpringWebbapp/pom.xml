@@ -26,11 +26,34 @@
 			<!-- compile - używany do kompilacji[domyślnie] -->
 			<!-- provided - jak compile, z tym, że w tym przypadku oczekujemy, że 
 				np serwer ma to narzędzie podczas uruchomienia aplikacji. Uzywany do kompilacji 
-				i testowania. Innymi słowy zaleznosc nie zostanie dodana do wynikowej paczki projektu -->
+				i testowania. Innymi słowy zaleznosc nie zostanie dodana do wynikowej paczki 
+				projektu -->
 			<!-- runtime - biblioteka używana działania i testowania, ale nie do kompilacji -->
 			<!-- test - tylko do fazy testowania -->
-			<!-- system [tak samo jak provided] - wskazanie na pliki bezpośrednio w systemie-->
-			<!-- import - jeżeli mamy już jakiś projekt, to możemy wskazac na tę zależnośc-->
+			<!-- system [tak samo jak provided] - wskazanie na pliki bezpośrednio 
+				w systemie -->
+			<!-- import - jeżeli mamy już jakiś projekt, to możemy wskazac na tę zależnośc -->
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.1.4.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-asm</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.1.4.RELEASE</version>
 		</dependency>
 	</dependencies>
 </project>
