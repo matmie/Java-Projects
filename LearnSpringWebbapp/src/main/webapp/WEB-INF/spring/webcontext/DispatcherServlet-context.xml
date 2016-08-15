@@ -13,7 +13,7 @@
 		adnotacji. -->
 	<!--enable-matrix-variables="true" wsparcie dla zmiennych tablicowych URI 
 		w kontrolerach -->
-	<annotation-driven enable-matrix-variables="true" />
+	<annotation-driven enable-matrix-variables="true" validator="validator"/>
 	<!--context:component-scan wskazuje na pakiet, który będzie root-em ustawionyum 
 		do poszukiwań klas kontrolerów(@Controller), repozytoriów(@Repository), serwisów(@Service) 
 		Tworząc adnotacje @Autowired w jakiejś klasie mechanizm Spring-a będzie szukał 
@@ -21,7 +21,12 @@
 		Service) zaczynając od tego katalogu -->
 	<context:component-scan base-package="com.evaluateyourself.webstore" />
 
-	<resources mapping="/resources/**" location="/resources/" />
+	<!--location - definiuje położenie katalogu zawierającego statyczne zasoby -->
+	<!--mapping - wskazuje ścieżkę żądania mapowaną przez wskazny katalog. Każde 
+		żądanie, którego ścieżka bedzie rozpoczynac się od /resource zostanie odwzorowane 
+		na katalog /resources -->
+	<!-- /** - wskazuje rekurencyjne przeszukiwanie katalogu -->
+	<resources mapping="/resource/**" location="/resources/" />
 
 	<!--Resolver pomaga głównemu servletowi w identyfikacji widoków, które mają 
 		byc wygenerowane jako odpowiedź dla konkretnego żadania -->
@@ -37,6 +42,77 @@
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<beans:property name="basename" value="messages" />
+	</beans:bean>
+	<!-- CommonsMultipartResolver określa czy zawartosc żądania jest prosta(zawiera 
+		tylko parametry), czy złożona(zawiera równierz pliki), a następnie wyodrębnia 
+		z żądania pliki oraz parametry. -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10240000" />
+	</beans:bean>
+
+	<!-- Na podstawie danych w żądaniu deleguje dane do odpowiedniego widoku 
+		w sekcji defaultViews -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<beans:property name="mediaTypes">
+			<beans:map>
+				<beans:entry key="json" value="application/json;charset=UTF-8" />
+				<beans:entry key="xml" value="application/xml;charset=UTF-8" />
+				<beans:entry key="html" value="text/html;charset=UTF-8" />
+			</beans:map>
+		</beans:property>
+		<beans:property name="defaultViews">
+			<beans:list>
+				<beans:ref bean="jsonView" />
+				<beans:ref bean="xmlView" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- Konfiguracja beana ktory bedzie generowal widok JSON -->
+	<beans:bean id="jsonView"
+		class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<beans:property name="prettyPrint" value="true" />
+	</beans:bean>
+
+	<!-- Konfiguracja beana ktory bedzie generowal widok XML poniewaz w domenach 
+		które moga byc transofmowane do XML ustawiamy adnotacje -->
+	<beans:bean id="xmlView"
+		class="org.springframework.web.servlet.view.xml.MarshallingView">
+		<beans:constructor-arg>
+			<beans:bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+				<beans:property name="classesToBeBound">
+					<beans:list>
+						<beans:value>com.evaluateyourself.webstore.domain.Product
+						</beans:value>
+					</beans:list>
+				</beans:property>
+			</beans:bean>
+		</beans:constructor-arg>
+	</beans:bean>
+	
+	<interceptors>
+		<beans:bean class="com.evaluateyourself.webstore.interceptor.PerformanceMonitorInterceptor" />
+		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="language" />
+		</beans:bean>
+		<beans:bean class="com.evaluateyourself.webstore.interceptor.AuditingInterceptor" />
+		<beans:bean class="com.evaluateyourself.webstore.interceptor.PromoCodeInterceptor" >
+			<beans:property name="promoCode" value="OF3RTA" />
+			<beans:property name="errorRedirect" value="invalidPromoCode" />
+			<beans:property name="offerRedirect" value="products" />
+		</beans:bean>
+	</interceptors>
+	
+	<!--Definicja lokalnych ustawień regionalnych  -->
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<beans:property name="defaultLocale" value="pl" />
+	</beans:bean>
+	
+	<!--Validator  -->
+	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<beans:property name="validationMessageSource" ref="messageSource" />
 	</beans:bean>
 
 

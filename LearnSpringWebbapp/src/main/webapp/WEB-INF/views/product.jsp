@@ -20,6 +20,7 @@
 		<section class = "container">
 			<div class = "row">
 				  <div class="col-md-5">
+				  	 <img src="<c:url value="/resource/images/${product.productId}.png"/>" alt="image" style="width: 100%">
 				  	<h1>${product.name}</h1>
 				  	<p>${product.description}</p>
 				  	<p>
@@ -35,6 +36,11 @@
 				  		<strong>Dostępna liczba sztuk: </strong>${product.unitsInStock}
 				  	</p>
 				  	<h4>${product.unitPrice} PLN</h4>
+				  	<p>
+				  		<a href="<c:url value="/resource/pdf/${product.productId}.pdf"/>" class="btn btn-primary" target="_blank">
+				  					<span class="glyphicon-file glyphicon"></span> Podręcznik
+				  				</a>
+				  	</p>
 				  	<p>
 				  		<a href="#" class="btn btn-warning btn-large">
 				  			<span class="glyphicon-shopping-cart glyphicon"></span>

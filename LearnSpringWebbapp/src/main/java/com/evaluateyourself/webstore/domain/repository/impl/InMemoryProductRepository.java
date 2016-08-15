@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.evaluateyourself.webstore.domain.Product;
 import com.evaluateyourself.webstore.domain.repository.ProductRepository;
+import com.evaluateyourself.webstore.exception.ProductNotFoudException;
 import com.evaluateyourself.webstore.utils.Utils;
 
 /**
@@ -83,7 +84,7 @@ public class InMemoryProductRepository implements ProductRepository {
 		}
 		
 		if(productById == null) {
-			throw new IllegalArgumentException("Brak produktu o wskazanym id: " + productId);
+			throw new ProductNotFoudException(productId);
 		}
 		return productById;
 	}

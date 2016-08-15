@@ -19,10 +19,16 @@
 		</section>
 		
 		<section class = "container">
-			<div class = "row">
-				<c:forEach items="${products}" var="product">
-				  <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-				  	<div class="thumbnail">
+			<%int licznik = 0;%>
+			<c:forEach items="${products}" var="product">
+			  <%if (licznik % 4 == 0) {%>
+			  	<div class = "row">
+			  <%} %>
+				  <div class="col-md-3" style="padding-bottom: 15px">
+				  	<div class="thumbnail"> 
+				  		<a href=<spring:url value="/products/product?id=${product.productId}"/>>
+				  	    	<img src="<c:url value="/resource/images/${product.productId}.png"/>" alt="image" style="width: 100%">
+				  	    </a>
 				  		<div class="caption">
 				  			<h3>${product.name}</h3>
 				  			<p>${product.description}</p>
@@ -32,12 +38,18 @@
 				  				<a href=<spring:url value="/products/product?id=${product.productId}"/> class="btn btn-primary">
 				  					<span class="glyphicon-info-sign glyphicon"></span> Szczegóły
 				  				</a>
+				  				<a href="<c:url value="/resource/pdf/${product.productId}.pdf"/>" class="btn btn-primary" target="_blank">
+				  					<span class="glyphicon-file glyphicon"></span> Podręcznik
+				  				</a>
 				  			</p>
 				  		</div>
 				  	</div>
 				  </div>
-				</c:forEach> 
-			</div>
+			  <%if(licznik % 4 == 3 ){%>
+			  	</div>
+			  <%} %>
+			  <%licznik++;%>
+			</c:forEach> 
 		</section>
 		
 	</body>

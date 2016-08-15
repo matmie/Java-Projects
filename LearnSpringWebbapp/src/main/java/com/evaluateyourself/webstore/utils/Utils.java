@@ -4,10 +4,15 @@
 package com.evaluateyourself.webstore.utils;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Mateusz Miernik [mateusz.miernik86@gmail.com]
@@ -31,5 +36,19 @@ public class Utils {
 			e.printStackTrace();
 		}
 		return bigDecimal;
+	}
+	
+	public static String getURLPatch(HttpServletRequest request){
+		String currentPath = request.getRequestURI();
+		String queryString = request.getQueryString();
+		queryString = queryString == null ? "" : "?" + queryString;
+		return currentPath + queryString;
+	}
+	
+	public static String getCurrentTime(){
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'o' hh:mm:ss");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		return formatter.format(calendar.getTime());
 	}
 }
