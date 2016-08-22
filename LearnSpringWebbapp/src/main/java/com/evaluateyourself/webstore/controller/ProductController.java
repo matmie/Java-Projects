@@ -33,6 +33,8 @@ import com.evaluateyourself.webstore.exception.NoProductsFoundUnderCategoryExcep
 import com.evaluateyourself.webstore.exception.ProductNotFoudException;
 import com.evaluateyourself.webstore.service.ProductService;
 import com.evaluateyourself.webstore.service.impl.ProductServiceImpl;
+import com.evaluateyourself.webstore.validator.ProductValidator;
+import com.evaluateyourself.webstore.validator.UnitsInStockValidator;
 
 @Controller
 @RequestMapping("/products")
@@ -43,6 +45,9 @@ public class ProductController {
 	 */
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ProductValidator productValidator;
 	
 	@ExceptionHandler(ProductNotFoudException.class)
 	public ModelAndView handleError(HttpServletRequest req, ProductNotFoudException exception){
@@ -63,6 +68,7 @@ public class ProductController {
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("unitsInOrder", "discontinued");
 		binder.setAllowedFields("productId","language","name","productPdf","unitPrice","description","manufacturer","category","unitsInStock","productImage","condition");
+		binder.setValidator(productValidator);
 	}
 
 	@RequestMapping("/product")

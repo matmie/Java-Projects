@@ -3,6 +3,7 @@
  */
 package com.evaluateyourself.webstore.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.validation.constraints.Digits;
@@ -16,13 +17,21 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.evaluateyourself.webstore.validator.Category;
+import com.evaluateyourself.webstore.validator.ProductId;
+
 /**
  * @author Mateusz Miernik [mateusz.miernik86@gmail.com]
  *
  */
 @XmlRootElement
-public class Product {
+public class Product implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8569558439999239204L;
 	@Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId.validation}") 
+	@ProductId(message="{ProductId.Product.productId.validation}")
 	private String productId;
 	@Size(min=4, max=50, message="{Size.Product.name.validation}")
 	private String name;
@@ -35,6 +44,7 @@ public class Product {
 	private String manufacturer;
 	@Size(min=1, max=50, message="{NotNull.Product.category.validation}")
 	@NotNull(message="{NotNull.Product.category.validation}")
+	@Category(message="{Category.product.category.validation}")
 	private String category;
 	@Min(value=0, message="{Min.Product.unitsInStock.validation}")
 	private long unitsInStock;

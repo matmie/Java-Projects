@@ -114,6 +114,19 @@
 	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<beans:property name="validationMessageSource" ref="messageSource" />
 	</beans:bean>
-
+	
+	<beans:bean id="productValidator" class="com.evaluateyourself.webstore.validator.ProductValidator">
+		<beans:property name="springValidators">
+			<beans:set>
+				<beans:ref bean="unitsInStockValidator"/>
+				<beans:ref bean="productImageValidator"/>
+			</beans:set>
+			
+		</beans:property>
+	</beans:bean>
+	<beans:bean id="unitsInStockValidator" class="com.evaluateyourself.webstore.validator.UnitsInStockValidator" />
+	<beans:bean id="productImageValidator" class="com.evaluateyourself.webstore.validator.ProductImageValidator" >
+		<beans:property name="allowedSize" value="1024"></beans:property>
+	</beans:bean>
 
 </beans:beans>

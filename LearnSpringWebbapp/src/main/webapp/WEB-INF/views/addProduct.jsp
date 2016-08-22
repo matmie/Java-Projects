@@ -132,6 +132,7 @@
 					<div class="col-lg-10">
 						<form:input id="productImage" path="productImage" type="file"
 							class="form:input-large" />
+						<form:errors cssClass="text-danger" path="productImage"/>
 					</div>
 				</div>
 				<div class="form-group">
