@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<flow xmlns="http://www.springframework.org/schema/webflow" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemLocation="http://www.springframework.org/schema 
+	                   http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+	<var name="order" class="com.packt.webstore.domain.Order" />
+	<!-- Pierwszy startowy stan. Startowy dlatego bo nie ma zdefiniowanego stanu start-state -->
+	<!-- Interakcja z zaimplementowanymi usługami -->
+	<action-state id="addCartToOrder"> <!-- Dowolna liczba stanów akcji -->
+		<evaluate expression="cartServiceImpl.validate(requestParameters.cartId)" result="order.cart" />
+		<transition to="InvalidCartWarning" on-exception="com.packt.webstore.exception.InvalidCartException"/>
+		<transition to="collectCustomerInfo" />
+	</action-state>
+	<!-- Stan widoku -->
+	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
+		<transition on="customerInfoCollected" to="collectShippingDetail" /> 
+	</view-state>
+	<view-state id="collectShippingDetail" model="order">
+		<transition on="shippingDetailCollected" to="orderConfiramtion" />
+		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
+	</view-state>
+	<view-state id="orderConfirmation">
+		<transition on="orderConfirmed" to="processOrder" />
+		<transition on="backToCollectShippingDetail" to="collectShippingDetail"/>
+	</view-state>
+	<action-state id="processOrder">
+		<evaluate expression="orderServiceImpl.saveOrder(order)" result="order.orderId" />
+		<transition to="thankCustomer"></transition>
+	</action-state>
+	<view-state id="InvalidCartWarning">
+		<transition to="endState" />	
+	</view-state>
+	<view-state id="thankCustomer" model="order">
+		<transition to="endState" />
+	</view-state>
+	<!-- Stan końcowy -->
+	<end-state id="endState" />
+	<end-state id="cancelCheckout" view="checkOutCancelled.jsp" />
+	<global-transition>
+		<transition on="cancel" to="endState"/>
+	</global-transition>
+
+</flow>
