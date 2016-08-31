@@ -25,6 +25,5 @@ public interface UsersManager {
 	 * @param user new User to add
 	 */
     public void addUser(Users user);
-    
-    public String getAllInfo();
+   
 }

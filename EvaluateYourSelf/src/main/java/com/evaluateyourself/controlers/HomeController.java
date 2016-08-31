@@ -71,7 +71,7 @@ public class HomeController {
 			}
 		}
 		//model.addAttribute("allUsers", this.populateUsers());
-		model.addAttribute("info", manager.getAllInfo());
+		//model.addAttribute("info", manager.getAllInfo());
 		//greetings
 		model.addAttribute("message", greetings);
 		return "usersRegistration";

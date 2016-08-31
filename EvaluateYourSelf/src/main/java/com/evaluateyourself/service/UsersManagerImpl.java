@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.evaluateyourself.dao.UsersDAO;
+import com.evaluateyourself.dao.UsersDao;
 import com.evaluateyourself.model.Users;
 
 /**
@@ -19,14 +19,14 @@ import com.evaluateyourself.model.Users;
 public class UsersManagerImpl implements UsersManager {
 	
 	@Autowired
-	UsersDAO usersdao;
+	UsersDao usersdao;
 	
 	/* (non-Javadoc)
 	 * @see com.evaluateyourself.service.UsersManager#getAllUsers()
 	 */
 	@Override
 	public List<Users> getAllUsers() {
-		return usersdao.findAll();
+		return usersdao.getAll();
 	}
 
 	/* (non-Javadoc)
@@ -34,15 +34,7 @@ public class UsersManagerImpl implements UsersManager {
 	 */
 	@Override
 	public void addUser(Users user) {
-		usersdao.save(user);
-	}
-
-	/* (non-Javadoc)
-	 * @see com.evaluateyourself.service.UsersManager#getAllInfo()
-	 */
-	@Override
-	public String getAllInfo() {
-		return usersdao.getAllInfo();
+		usersdao.create(user);
 	}
 
 }
