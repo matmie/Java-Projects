@@ -5,15 +5,14 @@ import java.util.List;
 import com.evaluateyourself.model.*;
 /**
  * 
- * @author Mateusz
- *
+ * @author Mateusz [mateusz.miernik86@gmail.com]
+ * Interface define methods especially for Users table/domain
  */
 public interface UsersDao extends Dao<Users>{
-	 
-    public Users findByPk(int pk);
-    
+	/**
+	 * Search user with specify login
+	 * @param login Login for search
+	 * @return User object represents user
+	 */
     public Users findByLogin(String login);
-    
-    public Collection<Users> findByLastName(String lastName);
-
 }

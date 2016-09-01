@@ -19,17 +19,30 @@ import com.evaluateyourself.dao.Dao;
 
 /**
  * @author Mateusz Miernik [mateusz.miernik86@gmail.com]
- *
+ * Abstract class, which will be use as extends class for every specify Dao class
  */
 public class AbstractHbnDao<T extends Object> implements Dao<T> {
 	
+	/**
+	 * Session Factory from hibernate
+	 */
 	@Inject private SessionFactory sessionFactory;
+	/**
+	 * What class is used. Especially for CRUD methods.
+	 */
 	private Class<T> domainClass;
 	
-	protected Session getSession(){
+	/**
+	 * Method returns current session
+	 * @return current session
+	 */
+	protected Session getCurrentSession(){
 		return sessionFactory.getCurrentSession();
 	}
-	
+	/**
+	 * Method try to find which class is on the T generic parameter
+	 * @return domain class which represents by T generic parameter 
+	 */
 	@SuppressWarnings("unchecked")
 	private Class<T> getDomainClass(){
 		if(domainClass == null){
@@ -38,13 +51,16 @@ public class AbstractHbnDao<T extends Object> implements Dao<T> {
 		}
 		return domainClass;
 	}
-	
+	/**
+	 * Method returns domain class name
+	 * @return Domain Class Name
+	 */
 	private String getDomainClassName(){
 		return getDomainClass().getName();
 	}
-	
 	@Override
 	public void create(T t) {
+		//Use Java Reflections for search method "setDateCreated"
 		Method method = ReflectionUtils.findMethod(getDomainClass(), "setDateCreated", new Class[]{Date.class});
 		if(method != null){
 			try{
@@ -54,53 +70,53 @@ public class AbstractHbnDao<T extends Object> implements Dao<T> {
 				e.printStackTrace();
 			}
 		}
-		getSession().save(t);
+		//Save the T object
+		getCurrentSession().save(t);
 	}
 
 	@Override
-	//@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public T get(Serializable id) {
-		return (T) getSession().get(getDomainClass(), id);
+		return (T) getCurrentSession().get(getDomainClass(), id);
 	}
 
 	@Override
-	//@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public T load(Serializable id) {
-		return (T) getSession().load(getDomainClass(), id);
+		return (T) getCurrentSession().load(getDomainClass(), id);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<T> getAll() {
-		return getSession().createQuery("from " + getDomainClassName()).list();
+		return getCurrentSession().createQuery("from " + getDomainClassName()).list();
 	}
 
 	@Override
 	public void update(T t) {
-		getSession().update(t);
+		getCurrentSession().update(t);
 	}
 
 	@Override
 	public void delete(T t) {
-		getSession().delete(t);
+		getCurrentSession().delete(t);
 		
 	}
 
 	@Override
 	public void deleteById(Serializable id) {
-		getSession().delete(load(id));
-		
+		getCurrentSession().delete(load(id));
 	}
 
 	@Override
 	public void deleteAll() {
-		getSession().createQuery("delete "+ getDomainClassName());
+		getCurrentSession().createQuery("delete "+ getDomainClassName());
 		
 	}
 
 	@Override
 	public long count() {
-		return (long)getSession().createQuery("select count(*) from " + getDomainClassName()).uniqueResult();
+		return (long)getCurrentSession().createQuery("select count(*) from " + getDomainClassName()).uniqueResult();
 	}
 
 	@Override

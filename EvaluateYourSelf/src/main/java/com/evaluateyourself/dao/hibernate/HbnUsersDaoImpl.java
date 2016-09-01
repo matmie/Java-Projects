@@ -3,8 +3,8 @@
  */
 package com.evaluateyourself.dao.hibernate;
 
-import java.util.Collection;
-
+import org.hibernate.Query;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.springframework.stereotype.Repository;
 
 import com.evaluateyourself.dao.UsersDao;
@@ -17,27 +17,18 @@ import com.evaluateyourself.model.Users;
  */
 /**
  * @author Mateusz
- *
+ * Repository class with methods uses to Users objects manipulate  
  */
 @Repository
 public class HbnUsersDaoImpl extends AbstractHbnDao<Users> implements UsersDao {
 
 	@Override
-	public Users findByPk(int pk) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Users findByLogin(String login) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = super.getCurrentSession().createQuery("from Users where uslogin = :uslogin");
+		query.setParameter("uslogin", login);
+		query.setResultTransformer(new AliasToBeanResultTransformer(Users.class));
+		return (Users)query.list().get(0);
 	}
 
-	@Override
-	public Collection<Users> findByLastName(String lastName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
     
 }

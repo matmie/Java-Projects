@@ -7,7 +7,7 @@ import java.util.Date;
 
 import com.evaluateyourself.model.Users;
 import com.evaluateyourself.service.UsersManager;
-import com.evaluateyourself.service.UsersManagerImpl;
+import com.evaluateyourself.service.impl.UsersManagerImpl;
 
 /**
  * @author Mateusz

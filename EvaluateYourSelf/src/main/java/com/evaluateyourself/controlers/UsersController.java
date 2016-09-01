@@ -21,22 +21,10 @@ import com.evaluateyourself.service.UsersManager;
  *
  */
 @Controller
-@RequestMapping(value = "/userRegistration")
-@SessionAttributes("user")
+@RequestMapping(value = "/users")
 public class UsersController {
 
 	@Autowired
-	UsersManager manager;
+	UsersManager usersManager;
 
-	@ModelAttribute("allUsers")
-	public List<Users> populateUsers() {
-		List<Users> users = manager.getAllUsers();
-		return users;
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	public String setupPage(Model model) {
-
-		return "usersRegistration";
-	}
 }
