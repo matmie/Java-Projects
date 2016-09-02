@@ -13,7 +13,7 @@ public class Cart implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 4906431256432174911L;
-	Logger logger= Logger.getLogger(Cart.class);
+	//Logger logger= Logger.getLogger(Cart.class);
 	private String cartId;
 	private Map<String, CartItem> cartItems;
 	private BigDecimal grandTotal;

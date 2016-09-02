@@ -26,14 +26,14 @@ public class Customer implements Serializable{
 	 * 
 	 */
 	public Customer() {
-		super();
+		this.billingAddress = new Address();
 	}
 	/**
 	 * @param customerId
 	 * @param name
 	 */
 	public Customer(int customerId, String name) {
-		super();
+		this();
 		this.customerId = customerId;
 		this.name = name;
 	}

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<flow xmlns="http://www.springframework.org/schema/webflow" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemLocation="http://www.springframework.org/schema 
-	                   http://www.springframework.org/schema/webflow/spring-webflow.xsd">
-	<var name="order" class="com.packt.webstore.domain.Order" />
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+      	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	<var name="order" class="com.evaluateyourself.webstore.domain.Order" />
 	<!-- Pierwszy startowy stan. Startowy dlatego bo nie ma zdefiniowanego stanu start-state -->
 	<!-- Interakcja z zaimplementowanymi usługami -->
 	<action-state id="addCartToOrder"> <!-- Dowolna liczba stanów akcji -->
 		<evaluate expression="cartServiceImpl.validate(requestParameters.cartId)" result="order.cart" />
-		<transition to="InvalidCartWarning" on-exception="com.packt.webstore.exception.InvalidCartException"/>
+		<transition to="InvalidCartWarning" on-exception="com.evaluateyourself.webstore.exception.InvalidCartException"/>
 		<transition to="collectCustomerInfo" />
 	</action-state>
 	<!-- Stan widoku -->
@@ -17,7 +16,7 @@
 		<transition on="customerInfoCollected" to="collectShippingDetail" /> 
 	</view-state>
 	<view-state id="collectShippingDetail" model="order">
-		<transition on="shippingDetailCollected" to="orderConfiramtion" />
+		<transition on="shippingDetailCollected" to="orderConfirmation" />
 		<transition on="backToCollectCustomerInfo" to="collectCustomerInfo" />
 	</view-state>
 	<view-state id="orderConfirmation">
@@ -37,8 +36,7 @@
 	<!-- Stan końcowy -->
 	<end-state id="endState" />
 	<end-state id="cancelCheckout" view="checkOutCancelled.jsp" />
-	<global-transition>
+	<global-transitions>
 		<transition on="cancel" to="endState"/>
-	</global-transition>
-
+	</global-transitions>
 </flow>
