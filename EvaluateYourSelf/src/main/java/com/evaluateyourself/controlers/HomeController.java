@@ -27,4 +27,9 @@ public class HomeController {
 	
 	@Autowired
 	UsersManager manager;	
+	
+	@RequestMapping(value="/")
+	public String home(Model model){
+		return "home";
+	}
 }
