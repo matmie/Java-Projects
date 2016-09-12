@@ -4,7 +4,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
-<div class="footer">
+<footer class="footer">
+	<div class="container">
+		<ul class="footer-links">
+			<li><a href="/about" target="_blank"><spring:message code="footer.about.label" /></a></li>
+			<li><a href="/regulations" target="_blank"><spring:message code="footer.regulations.label" /></a></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
 
-
-</div>
+</footer>

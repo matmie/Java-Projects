@@ -76,7 +76,7 @@
 				<prop key="hibernate.default_schema">public</prop>
 				<prop key="format_sql">true</prop>
 				<prop key="use_sql_comments">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>
@@ -86,6 +86,19 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="allServicePointCut"
+			expression="execution(* com.evaluateyourself.service.*Manager.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allServicePointCut" />
+	</aop:config>
 	
 	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>

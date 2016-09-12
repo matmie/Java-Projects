@@ -18,12 +18,7 @@
 	
 	<!--  -->                    
     <bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames"> 
-		    <list>
-		    	<value>/resources/messages/messages</value>
-		    </list>
-		</property>
+		class="com.evaluateyourself.utils.HbnDataSourceMessageSource">
 	</bean>
 	
 	<bean id="props"
