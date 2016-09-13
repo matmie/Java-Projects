@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/flows/checkout/checkOutCancelled.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/flows/checkout/thankCustomer.jsp=UTF-8
+encoding//src/test/java/com/evaluateyourself/webstore/validator/ProductValidatorTest.java=UTF-8

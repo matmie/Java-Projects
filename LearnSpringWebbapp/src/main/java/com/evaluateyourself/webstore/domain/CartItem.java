@@ -27,6 +27,7 @@ public class CartItem implements Serializable{
 	 */
 	public CartItem() {
 		super();
+		this.quantity = 1;
 	}
 	
 	
