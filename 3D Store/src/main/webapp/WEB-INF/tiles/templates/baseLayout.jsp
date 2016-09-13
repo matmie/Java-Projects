@@ -27,9 +27,25 @@
 	</head>
 
 	<body>
-	  <tiles:insertAttribute name="default_Header"/>
-	  <tiles:insertAttribute name="default_Navigation"/>
-	  <tiles:insertAttribute name="default_Content" />
-	  <tiles:insertAttribute name="default_Footer" />
+	  <table>
+	  	<tr>
+	  		<td colspan="2">
+	  			<tiles:insertAttribute name="default_Navigation"/>
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  			<tiles:insertAttribute name="default_Menu" />
+	  		</td>
+	  		<td>
+	  			<tiles:insertAttribute name="default_Content" />
+	  		</td>
+	  	</tr>
+	    <tr>
+	    	<td colspan="2"> 
+	    		<tiles:insertAttribute name="default_Footer" />
+	    	</td>
+	    </tr>
+	  </table>
 	</body>
 </html>

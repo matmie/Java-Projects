@@ -56,5 +56,5 @@
 
 	<!--Component scan tells Spring MVC where is the root for scanning Controllers, 
 		Repositories, etc -->
-	<context:component-scan base-package="com.evaluateyourself." />
+	<context:component-scan base-package="com.madmatsoft.store3d" />
 </beans:beans>

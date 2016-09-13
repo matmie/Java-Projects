@@ -5,10 +5,16 @@
 	
 <tiles-definitions>
 	<definition name="baseLayout" template="/WEB-INF/tiles/templates/baseLayout.jsp">
-	    <put-attribute name="default_Header" value="/WEB-INF/tiles/templates/defaultHeader.jsp" />
+	    <put-attribute name="default_Menu" value="/WEB-INF/tiles/templates/defaultMenu.jsp" />
 		<put-attribute name="default_Navigation" value="/WEB-INF/tiles/templates/defaultNavigation.jsp" />
 		<put-attribute name="default_Content" value="/WEB-INF/tiles/templates/defaultContent.jsp" />
 		<put-attribute name="default_Footer" value="/WEB-INF/tiles/templates/defaultFooter.jsp" />
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/resources/css/navbar.css" />
+			<add-attribute value="/resources/css/menu.css" />
+			<add-attribute value="/resources/css/content.css" />
+			<add-attribute value="/resources/css/footer.css" />
+		</put-list-attribute>
 	</definition>
 	
 	<!-- Every new view, which extends from baseLayout will have set viewName attribute -->

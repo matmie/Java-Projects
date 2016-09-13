@@ -67,7 +67,7 @@
 			</props> </property> -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
-		<property name="packagesToScan" value="com.evaluateyourself.model"/>
+		<property name="packagesToScan" value="com.madmatsoft.store3d.model"/>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
