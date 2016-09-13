@@ -8,6 +8,6 @@
 	<title><spring:message code="adminPanel.page.title" /></title>
 </head>
 <body>
-	<jsp:include page="headerPage.jsp"></jsp:include>
+	
 </body>
 </html>

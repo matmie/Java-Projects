@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+	
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/tiles/templates/baseLayout.jsp">
+	    <put-attribute name="default_Header" value="/WEB-INF/tiles/templates/defaultHeader.jsp" />
+		<put-attribute name="default_Navigation" value="/WEB-INF/tiles/templates/defaultNavigation.jsp" />
+		<put-attribute name="default_Content" value="/WEB-INF/tiles/templates/defaultContent.jsp" />
+		<put-attribute name="default_Footer" value="/WEB-INF/tiles/templates/defaultFooter.jsp" />
+	</definition>
+	
+	<!-- Every new view, which extends from baseLayout will have set viewName attribute -->
+	<definition name="*" extends="baseLayout">
+		<put-attribute name="viewName" value="{1}" />
+		<put-attribute name="default_Content" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+</tiles-definitions>

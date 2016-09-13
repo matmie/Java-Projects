@@ -4,6 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
+<tiles:importAttribute name="stylesheets" />
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,15 +22,18 @@
 		        integrity="<spring:eval expression="@properties.getProperty('portal.bootstrapHttpJsIntegrity')" />"
 		        crossorigin="<spring:eval expression="@properties.getProperty('portal.bootstrapHttpJsCrossorigin')" />">
 		</script>
-
+		<c:forEach var="css" items="${stylesheets}">
+			<link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
+		</c:forEach>
+		
 	    <title>
 
 	    </title>
 	</head>
 
 	<body>
-	  <tiles:insertAttribute name="default_Header"/>
 	  <tiles:insertAttribute name="default_Navigation"/>
+	  <tiles:insertAttribute name="default_Header"/>
 	  <tiles:insertAttribute name="default_Content" />
 	  <tiles:insertAttribute name="default_Footer" />
 	</body>

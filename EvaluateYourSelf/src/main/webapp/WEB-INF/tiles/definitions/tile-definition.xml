@@ -9,6 +9,10 @@
 		<put-attribute name="default_Navigation" value="/WEB-INF/tiles/templates/defaultNavigation.jsp" />
 		<put-attribute name="default_Content" value="/WEB-INF/tiles/templates/defaultContent.jsp" />
 		<put-attribute name="default_Footer" value="/WEB-INF/tiles/templates/defaultFooter.jsp" />
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/resources/css/header.css" />
+			<add-attribute value="/resources/css/navbar.css" />
+		</put-list-attribute>
 	</definition>
 	
 	<!-- Every new view, which extends from baseLayout will have set viewName attribute -->
