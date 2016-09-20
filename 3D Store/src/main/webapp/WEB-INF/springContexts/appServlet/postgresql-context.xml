@@ -96,7 +96,7 @@
 	
 	<aop:config>
 		<aop:pointcut id="allServicePointCut"
-			expression="execution(* com.evaluateyourself.service.*Manager.*(..))" />
+			expression="execution(* com.madmatsoft.store3d.service.*Manager.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="allServicePointCut" />
 	</aop:config>
 	
