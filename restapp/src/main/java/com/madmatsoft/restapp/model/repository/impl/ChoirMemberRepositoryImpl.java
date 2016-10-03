@@ -29,10 +29,10 @@ public class ChoirMemberRepositoryImpl implements ChoirMemberRepository {
 	
 	public ChoirMemberRepositoryImpl(){
 		
-		ChoirMember chmem1 = new ChoirMember(1, "Mateusz", "123234234");
-		ChoirMember chmem2 = new ChoirMember(2, "Piotr", "123456654");
-		ChoirMember chmem3 = new ChoirMember(3, "Błażej", "355456785");
-		ChoirMember chmem4 = new ChoirMember(4, "Ania", "355456785");
+		ChoirMember chmem1 = new ChoirMember("Mateusz", "123234234");
+		ChoirMember chmem2 = new ChoirMember("Piotr", "123456654");
+		ChoirMember chmem3 = new ChoirMember("Błażej", "355456785");
+		ChoirMember chmem4 = new ChoirMember("Ania", "355456785");
 		
 		choirMemberList.add(chmem1);
 		choirMemberList.add(chmem2);

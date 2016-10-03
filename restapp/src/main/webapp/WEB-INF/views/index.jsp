@@ -19,7 +19,7 @@
 			rel="stylesheet">
 		
 		<script
-			src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+			src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 		<script src="/restapp/resource/js/controllers.js"></script>
 	
 	</head>
@@ -45,38 +45,43 @@
 						<td>{{choirMember.choirMemberId}}</td>
 						<td>{{choirMember.choirMemberName}}</td>
 						<td>{{choirMember.choirMemberPhoneNumber}}</td>
-						<td><a href="#" class="label label-danger"
+						<td><a href="" class="label label-danger"
 							ng-click="deleteFromChoirMemebers(choirMember.choirMemberId)"> <span
 								class="glyphicon glyphicon-remove"></span><spring:message code="choirMembersList.choirMember.delete" />
 						</a>
-						<a href="#" class="label label-warning" style="margin-left : 10px;"
-							ng-click="updateChoirMembers(chourMember.choirMemberId)"> <span
+						<a href="" class="label label-warning" style="margin-left : 10px;"
+							ng-click="getUpdateSection(choirMember.choirMemberId,choirMember.choirMemberName,choirMember.choirMemberPhoneNumber)"> <span
 								class="glyphicon glyphicon-ok"></span><spring:message code="choirMembersList.choirMember.update" />
 						</a></td>
 					</tr>
 					<tr id="addingSection" style="display:none;">
 						<td>
-							<input type="number" class ="form:input-large" style="width:70px;" placeholder="<spring:message code="choirMembersList.choirMember.id"/>"/>
+							<input id="inputID" type="number" ng-model="choirMemberId" required="required" class ="form:input-large" style="width:70px; display:none;"  placeholder="<spring:message code="choirMembersList.choirMember.id"/>"/>
+							<input id="hiddenInput" type="hidden" value="" /> 
 						</td>
 						<td>
-							<input type="text" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.name"/>"/>
+							<input type="text" ng-model="choirMemberName" required="required" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.name"/>"/>
 						</td>
 						<td>
-							<input type="text" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.phone"/>"/>
+							<input type="text" ng-model="choirMemberPhoneNumber" required="required" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.phone"/>"/>
 						</td>
 						<td>
-							<a href="#" class="label label-success" style="margin-left : 10px;"
+							<a id="aAdd" href="" class="label label-success" style="margin-left : 10px;"
 								ng-click="addToChoirMembers()"> <span
 									class="glyphicon glyphicon-ok"></span><spring:message code="choirMembersList.choirMember.add" />
 							</a>
-							<a href="#" class="label label-danger" style="margin-left : 10px;"
+							<a id="aUpdate" href="" class="label label-success" style="margin-left : 10px;"
+								ng-click="updateChoirMembers()"> <span
+									class="glyphicon glyphicon-ok"></span><spring:message code="choirMembersList.choirMember.add" />
+							</a>
+							<a href="" class="label label-danger" style="margin-left : 10px;"
 								ng-click="cancelAddingMember()"> <span
 									class="glyphicon glyphicon-remove"></span><spring:message code="choirMembersList.choirMember.cancel" />
 							</a>
 						</td>
 					</tr>
 				</table>
-				<a href="#" class="label label-primary" ng-click="getAddingSection()"> <span
+				<a href="" class="label label-primary" ng-click="getAddingSection()"> <span
 								class="glyphicon glyphicon-plus"></span><spring:message code="choirMembersList.choirMember.create" />
 				</a>
 			</div>

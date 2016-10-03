@@ -3,11 +3,14 @@
  */
 package com.madmatsoft.restapp.model;
 
+
 /**
  * @author Mateusz Miernik
  *
  */
 public class ChoirMember {
+	
+	private static long counter = 0;
 	
 	private long choirMemberId;
 	
@@ -15,9 +18,14 @@ public class ChoirMember {
 	
 	private String choirMemberPhoneNumber;
 	
-	public ChoirMember(long choirMemberId, String choirMemberName, String choirMemberPhoneNumber) {
+	public ChoirMember()
+	{
+		this.choirMemberId = ++counter;
+	}
+	
+	public ChoirMember(String choirMemberName, String choirMemberPhoneNumber) {
 		super();
-		this.choirMemberId = choirMemberId;
+		this.choirMemberId = ++counter;
 		this.choirMemberName = choirMemberName;
 		this.choirMemberPhoneNumber = choirMemberPhoneNumber;
 	}
