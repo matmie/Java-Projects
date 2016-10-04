@@ -5,9 +5,14 @@ package com.madmatsoft.restapp.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.xml.bind.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.madmatsoft.restapp.model.ChoirMember;
 import com.madmatsoft.restapp.model.service.ChoirMemberService;
+import com.madmatsoft.restapp.validation.ValidationError;
+import com.madmatsoft.restapp.validation.ValidationErrorBuilder;
 
 /**
  * @author Mateusz Miernik
@@ -34,13 +41,16 @@ public class ChoirMembersRestController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value="/membersList/add")
-	public ChoirMember create(@RequestBody ChoirMember choirMember){
+	public ChoirMember create(@Valid @RequestBody ChoirMember choirMember){
+//		if(result.hasErrors()){
+//			throws new Exception();
+//		}
 		return choirMemberService.read(choirMemberService.create(choirMember));
 	}
 	
 	@RequestMapping(value="/membersList/update/{choirMemberId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void update(@PathVariable(value = "choirMemberId") long choirMemberId, @RequestBody ChoirMember choirMember){
+	public void update(@PathVariable(value = "choirMemberId") long choirMemberId, @Valid @RequestBody ChoirMember choirMember){
 		choirMemberService.update(choirMemberId, choirMember);
 	}
 	
@@ -50,5 +60,14 @@ public class ChoirMembersRestController {
 		choirMemberService.delete(choirMemberId);
 	}
 	
+	@ExceptionHandler
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	public ValidationError handleException(MethodArgumentNotValidException exception){
+		return createValidationError(exception);
+	}
+	
+	private ValidationError createValidationError(MethodArgumentNotValidException exception){
+		return ValidationErrorBuilder.fromBindingErrors(exception.getBindingResult());
+	}
 	
 }

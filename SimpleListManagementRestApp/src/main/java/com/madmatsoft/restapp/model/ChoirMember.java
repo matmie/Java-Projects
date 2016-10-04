@@ -3,6 +3,9 @@
  */
 package com.madmatsoft.restapp.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * @author Mateusz Miernik
@@ -12,10 +15,15 @@ public class ChoirMember {
 	
 	private static long counter = 0;
 	
+	@NotNull(message="{ChoirMember.choirMemberId.validation.NotNull}")
 	private long choirMemberId;
 	
+	@NotNull(message="{ChoirMember.choirMemberName.validation.NotNull}")
+	@Size(min=2,max=50,message="{ChoirMember.choirMemberName.validation.Size}")
 	private String choirMemberName;
 	
+	@Pattern(regexp="[0-9]+", message="{ChoirMember.choirMemberPhoneNumber.validation.Pattern}")
+	@NotNull(message="{ChoirMember.choirMemberPhoneNumber.validation.NotNull}")
 	private String choirMemberPhoneNumber;
 	
 	public ChoirMember()

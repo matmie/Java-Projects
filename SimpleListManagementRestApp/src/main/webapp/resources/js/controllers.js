@@ -25,9 +25,8 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 			$scope.cancelAddingMember();
 		});
 		res.error(function(data) {
-			console.log("failure message: " + JSON.stringify({
-				data : data
-			}));
+			var validationDiv = document.getElementById('validation');
+			$scope.setValidationErrors(data,validationDiv);
 		})
 	};
 	$scope.updateChoirMembers = function() {
@@ -48,14 +47,13 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 			$scope.cancelAddingMember();
 		});
 		ret.error(function(data) {
-			console.log("failure message: " + JSON.stringify({
-				data : data
-			}));
+			var validationDiv = document.getElementById('validation');
+			$scope.setValidationErrors(data,validationDiv);
 		});
 	};
 
 	$scope.deleteFromChoirMemebers = function(choirMemberId) {
-		$http.put('/restapp/membersList/delete/' + choirMemberId).success(
+		$http.put('/SimpleListManagementRestApp/membersList/delete/' + choirMemberId).success(
 				function(data) {
 					$scope.refreshChoirMembers();
 				});
@@ -69,11 +67,15 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 		$scope.choirMemberName = "";
 		$scope.choirMemberPhoneNumber = "";
 		$scope.choirMemberId = "";
+		var validationDiv = document.getElementById('validation');
+		validationDiv.innerHTML = '';
 	};
 	$scope.cancelAddingMember = function() {
 		document.getElementById("addingSection").setAttribute("style",
 				"display:none;");
 		document.getElementById("inputID").setAttribute("style","width:70px; display:none;");
+		var validationDiv = document.getElementById('validation');
+		validationDiv.innerHTML = '';
 		
 	};
 	$scope.getUpdateSection = function(choirMemberId, choirMemberName, choirMemberPhoneNumber){
@@ -86,11 +88,25 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 		$scope.choirMemberName = choirMemberName;
 		$scope.choirMemberPhoneNumber = choirMemberPhoneNumber;
 		$scope.scrollTo('inputID');
+		var validationDiv = document.getElementById('validation');
+		validationDiv.innerHTML = '';
 	};
 	
 	$scope.scrollTo = function(scrollLocation){
 		$location.hash(scrollLocation);
 		$anchorScroll();
 	};
+	
+	$scope.setValidationErrors = function(data, validationDiv){
+		validationDiv.innerHTML = '';
+		angular.forEach(data.errors, function(value,key){
+			var el = document.createElement('H4');
+			el.setAttribute("style", "color:red;")
+			var textNode = document.createTextNode(value);
+			el.appendChild(textNode);
+			validationDiv.append(el);
+		});
+		$scope.scrollTo('addingButton');
+	}
 
 });

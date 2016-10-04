@@ -81,7 +81,8 @@
 						</td>
 					</tr>
 				</table>
-				<a href="" class="label label-primary" ng-click="getAddingSection()"> <span
+				<div id="validation" class="bs-callout bs-callout-danger"></div>
+				<a id="addingButton" href="" class="label label-primary" ng-click="getAddingSection()"> <span
 								class="glyphicon glyphicon-plus"></span><spring:message code="choirMembersList.choirMember.create" />
 				</a>
 			</div>
