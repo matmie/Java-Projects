@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.madmatsoft.restapp.validation.ChoirMemberDuplicateId;
+
 /**
  * @author Mateusz Miernik
  *
@@ -16,6 +18,7 @@ public class ChoirMember {
 	private static long counter = 0;
 	
 	@NotNull(message="{ChoirMember.choirMemberId.validation.NotNull}")
+	@ChoirMemberDuplicateId(message="{ChoirMember.choirMemberId.validation.ChoirMemberDuplicateId}")
 	private long choirMemberId;
 	
 	@NotNull(message="{ChoirMember.choirMemberName.validation.NotNull}")
