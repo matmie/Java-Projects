@@ -57,10 +57,9 @@
 					<tr id="addingSection" style="display:none;">
 						<td>
 							<input id="inputID" type="number" ng-model="choirMemberId" required="required" class ="form:input-large" style="width:70px; display:none;"  placeholder="<spring:message code="choirMembersList.choirMember.id"/>"/>
-							<input id="hiddenInput" type="hidden" value="" /> 
 						</td>
 						<td>
-							<input type="text" ng-model="choirMemberName" required="required" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.name"/>"/>
+							<input id="inputNameId" type="text" ng-model="choirMemberName" required="required" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.name"/>"/>
 						</td>
 						<td>
 							<input type="text" ng-model="choirMemberPhoneNumber" required="required" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.phone"/>"/>

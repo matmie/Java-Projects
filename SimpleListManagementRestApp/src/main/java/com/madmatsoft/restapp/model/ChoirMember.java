@@ -18,7 +18,7 @@ public class ChoirMember {
 	private static long counter = 0;
 	
 	@NotNull(message="{ChoirMember.choirMemberId.validation.NotNull}")
-	@ChoirMemberDuplicateId(message="{ChoirMember.choirMemberId.validation.ChoirMemberDuplicateId}")
+	//@ChoirMemberDuplicateId(message="{ChoirMember.choirMemberId.validation.ChoirMemberDuplicateId}")
 	private long choirMemberId;
 	
 	@NotNull(message="{ChoirMember.choirMemberName.validation.NotNull}")
@@ -29,14 +29,18 @@ public class ChoirMember {
 	@NotNull(message="{ChoirMember.choirMemberPhoneNumber.validation.NotNull}")
 	private String choirMemberPhoneNumber;
 	
+	public void setNextId(){
+		this.choirMemberId = ++counter;
+	}
+	
 	public ChoirMember()
 	{
-		this.choirMemberId = ++counter;
+		setNextId();
 	}
 	
 	public ChoirMember(String choirMemberName, String choirMemberPhoneNumber) {
 		super();
-		this.choirMemberId = ++counter;
+		setNextId();
 		this.choirMemberName = choirMemberName;
 		this.choirMemberPhoneNumber = choirMemberPhoneNumber;
 	}

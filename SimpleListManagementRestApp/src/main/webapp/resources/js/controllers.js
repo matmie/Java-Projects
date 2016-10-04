@@ -31,15 +31,14 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 	};
 	$scope.updateChoirMembers = function() {
 		var dataToSend = JSON.stringify({
-			choirMemberId : $scope.choirMemberId,
+			choirMemberId  : $scope.choirMemberId,
 			choirMemberName : $scope.choirMemberName,
 			choirMemberPhoneNumber : $scope.choirMemberPhoneNumber
 		});
-		var choirMemberOldId = document.getElementById("hiddenInput").getAttribute("value");
-		var ret = $http.put('/SimpleListManagementRestApp/membersList/update/' + choirMemberOldId,
+		var ret = $http.put('/SimpleListManagementRestApp/membersList/update/' + $scope.choirMemberId,
 				dataToSend);
 		ret.success(function(data) {
-			$scope.scrollTo('id_'+choirMemberOldId);
+			$scope.scrollTo('id_'+$scope.choirMemberId);
 			$scope.refreshChoirMembers();
 			$scope.choirMemberName = "";
 			$scope.choirMemberPhoneNumber = "";
@@ -63,8 +62,7 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 		document.getElementById("addingSection").setAttribute("style", "");
 		document.getElementById("aAdd").setAttribute("style","");
 		document.getElementById("aUpdate").setAttribute("style","display:none;");
-		document.getElementById("inputID").setAttribute("style","width:70px; display: none;");
-		$scope.scrollTo('inputID');
+		$scope.scrollTo('inputNameId');
 		$scope.choirMemberName = "";
 		$scope.choirMemberPhoneNumber = "";
 		$scope.choirMemberId = "";
@@ -74,21 +72,18 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 	$scope.cancelAddingMember = function() {
 		document.getElementById("addingSection").setAttribute("style",
 				"display:none;");
-		document.getElementById("inputID").setAttribute("style","width:70px; display:none;");
 		var validationDiv = document.getElementById('validation');
 		validationDiv.innerHTML = '';
 		
 	};
 	$scope.getUpdateSection = function(choirMemberId, choirMemberName, choirMemberPhoneNumber){
 		document.getElementById("addingSection").setAttribute("style", "");
-		document.getElementById("inputID").setAttribute("style","width:70px;");
 		document.getElementById("aAdd").setAttribute("style","display:none;");
 		document.getElementById("aUpdate").setAttribute("style","");
-		document.getElementById("hiddenInput").setAttribute("value", choirMemberId);
 		$scope.choirMemberId = choirMemberId;
 		$scope.choirMemberName = choirMemberName;
 		$scope.choirMemberPhoneNumber = choirMemberPhoneNumber;
-		$scope.scrollTo('inputID');
+		$scope.scrollTo('inputNameId');
 		var validationDiv = document.getElementById('validation');
 		validationDiv.innerHTML = '';
 	};

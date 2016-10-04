@@ -42,9 +42,7 @@ public class ChoirMembersRestController {
 	
 	@RequestMapping(method = RequestMethod.POST, value="/membersList/add")
 	public ChoirMember create(@Valid @RequestBody ChoirMember choirMember){
-//		if(result.hasErrors()){
-//			throws new Exception();
-//		}
+        //throw new IllegalArgumentException(choirMember.toString());
 		return choirMemberService.read(choirMemberService.create(choirMember));
 	}
 	

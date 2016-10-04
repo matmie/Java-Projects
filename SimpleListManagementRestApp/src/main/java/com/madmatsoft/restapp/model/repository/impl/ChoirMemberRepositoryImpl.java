@@ -100,16 +100,18 @@ public class ChoirMemberRepositoryImpl implements ChoirMemberRepository {
 	}
 	public ChoirMember read(long choirMemberId) {
 		ChoirMember chmem = null;
+		ChoirMember chmemRes = null;
 		for(Iterator<ChoirMember> iterator = choirMemberList.iterator();iterator.hasNext();){
 			chmem = iterator.next();
 			if(chmem.getChoirMemberId() == choirMemberId){
+				chmemRes = chmem;
 				break;
 			}
 		}
-		if(chmem == null){
+		if(chmemRes == null){
 			throw new IllegalArgumentException("There is no choir member with id = " + choirMemberId);
 		}
-		return chmem;
+		return chmemRes;
 	}
 	
 	private void checkIdExists(long choirMemberId){

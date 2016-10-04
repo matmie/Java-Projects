@@ -76,13 +76,4 @@ public class ChoirMemberRestController {
 		this.mockMvc.perform(put("/membersList/delete/" + 5).session(session)).andExpect(status().is(204));
 	}
 
-	public void updateChoirMemberWithExistingId() throws Exception {
-		ChoirMember chmem = new ChoirMember("Mateusz", "111");
-		chmem.setChoirMemberId(7);
-		ObjectMapper om = new ObjectMapper();
-		String chMemAsJson = om.writeValueAsString(chmem);
-		
-		this.mockMvc.perform(put("/membersList/update/" + 2).contentType(MediaType.APPLICATION_JSON).content(chMemAsJson).session(session)).andExpect(status().is(500));
-	}
-
 }
