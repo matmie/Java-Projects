@@ -53,6 +53,7 @@ choirMemberApp.controller('choirMemberCtrl', function($scope, $http, $location, 
 	};
 
 	$scope.deleteFromChoirMemebers = function(choirMemberId) {
+		$scope.cancelAddingMember();
 		$http.put('/SimpleListManagementRestApp/membersList/delete/' + choirMemberId).success(
 				function(data) {
 					$scope.refreshChoirMembers();
