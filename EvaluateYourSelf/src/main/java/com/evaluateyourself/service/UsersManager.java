@@ -5,6 +5,7 @@ package com.evaluateyourself.service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.ObjectNotFoundException;
 
@@ -19,7 +20,7 @@ public interface UsersManager {
 	 * This method creates new User in Users data base
 	 * @param user new User to add
 	 */
-    void create(Users user);
+    Users create(Users user);
 	/**
 	 * Method search for object, which has primary_key = id
 	 * @param id Specified id for Users model object for search
@@ -36,12 +37,12 @@ public interface UsersManager {
 	 * Get all rows of table represents by Users model object
 	 * @return List of all rows in data source
 	 */
-	List<Users> getAll();
+	Map<Integer,Users> getAll();
 	/**
 	 * Update row represents by T model object 
 	 * @param user Model Object
 	 */
-	void update(Users user);
+	Users update(Users user);
 	/**
 	 * Remove a persistent instance from data store.
 	 * @param user Model object

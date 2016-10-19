@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +28,7 @@ public class UsersInformations implements Serializable {
 	 */
 	@Id
 	@Column(name="uiid", nullable=false, unique=true)
-	@SequenceGenerator(name="usersinformationsseq")
+	@GeneratedValue
 	private int uiid;
 	
 	/**

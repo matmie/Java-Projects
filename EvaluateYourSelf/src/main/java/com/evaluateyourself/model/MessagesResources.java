@@ -7,26 +7,25 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * @author Mateusz Miernik [mateusz.miernik86@gmail.com]
- *
  */
 @Entity
 @Table(name="messagesresources", schema="public")
 public class MessagesResources implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 2751825859577807978L;
 	@Id
 	@Column(name="mrid", nullable=false, unique=true)
-	@SequenceGenerator(name="messages_resources_mr_id_seq")
+	@GeneratedValue
 	private int mrid;
+	
 	
 	@Column(name="mrcode", nullable=false, length=100)
 	private String mrcode;

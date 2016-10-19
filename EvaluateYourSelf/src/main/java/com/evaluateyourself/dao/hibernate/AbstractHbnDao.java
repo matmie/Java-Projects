@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.util.ReflectionUtils;
@@ -59,19 +60,9 @@ public class AbstractHbnDao<T extends Object> implements Dao<T> {
 		return getDomainClass().getName();
 	}
 	@Override
-	public void create(T t) {
-		//Use Java Reflections for search method "setDateCreated"
-		Method method = ReflectionUtils.findMethod(getDomainClass(), "setDateCreated", new Class[]{Date.class});
-		if(method != null){
-			try{
-				method.invoke(t, new Date());
-			}
-			catch (Exception e){
-				e.printStackTrace();
-			}
-		}
-		//Save the T object
+	public T create(T t) {
 		getCurrentSession().save(t);
+		return t;
 	}
 
 	@Override
@@ -116,7 +107,7 @@ public class AbstractHbnDao<T extends Object> implements Dao<T> {
 
 	@Override
 	public long count() {
-		return (long)getCurrentSession().createQuery("select count(*) from " + getDomainClassName()).uniqueResult();
+		return (Long)getCurrentSession().createQuery("select count(*) from " + getDomainClassName()).uniqueResult();
 	}
 
 	@Override

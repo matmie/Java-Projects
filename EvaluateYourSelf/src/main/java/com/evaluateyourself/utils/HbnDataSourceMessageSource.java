@@ -25,6 +25,11 @@ public class HbnDataSourceMessageSource extends AbstractMessageSource implements
 	}
 	@Override
 	protected MessageFormat resolveCode(String code, Locale locale) {
+		
+		/**
+		 * TODO: Delete this in the future. Only for testing
+		 */
+		locale = new Locale("pl","PL");
 		String message = messagesManager.getMessageForLocale(code, locale);
 		MessageFormat mf = new MessageFormat(message, locale);
 		return mf;

@@ -7,13 +7,19 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.annotation.Generated;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 
@@ -22,7 +28,6 @@ import javax.persistence.UniqueConstraint;
  * This class represents information about single user. 
  */
 @Entity
-/*uniqueConstraints= @UniqueConstraint(columnNames = {"uslogin"}) tak definiuje siê zespó³ kolumn w encji, który ma byc unikalny dla ka¿dego wiersza*/
 @Table(name="users", schema="public", uniqueConstraints= @UniqueConstraint(columnNames = {"uslogin"}))
 public class Users implements Serializable{
 	
@@ -33,7 +38,7 @@ public class Users implements Serializable{
 	 */
 	@Id
 	@Column(name="usid", nullable=false, unique=true)
-	@SequenceGenerator(name="usersusidseq") /*Tak ustala siê sekwencje która ma byc uzyta do generowania wartoœci klucza g³ównego(w tym przypadku)*/
+	@GeneratedValue
 	private int usid;
 
 	/**
@@ -51,8 +56,9 @@ public class Users implements Serializable{
 	/**
 	 * Specify date, when user joined to the community. Set current date as default  
 	 */
-	@Column(name="usjoindate", nullable=false, insertable=false, updatable=false)
-	private Date usjoindate = new Date();
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="usjoindate", insertable=false, updatable=false)
+	private Date usjoindate;
 	
 	/**
 	 * User login to system.
@@ -85,6 +91,10 @@ public class Users implements Serializable{
 	private Collection<UsersInformations> usersInfromationsColl;
 	
     
+	public Users(){
+		
+	}
+	
 	/**
 	 * @param uslogin User login 
 	 * @param usemail User email address

@@ -34,7 +34,7 @@ public class MessagesResourcesManagerImpl implements MessagesResourcesManager {
 		String methodName = "get"+firstCharacterlocale + localeIso3Language.substring(1,localeIso3Language.length());
 		Method method = null;
 		try {
-			method = MessagesResources.class.getMethod(methodName, new Class[]{});
+			method = MessagesResources.class.getMethod(methodName, new Class<?>[]{});
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {

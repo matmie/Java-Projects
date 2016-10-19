@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -32,7 +33,7 @@ public class UsersInformationsTypes implements Serializable {
 	 */
 	@Id
 	@Column(name="uitid", nullable=false, unique=true)
-	@SequenceGenerator(name="usersinformationstypesseq")
+	@GeneratedValue
 	private int uitid;
 	
 	/**

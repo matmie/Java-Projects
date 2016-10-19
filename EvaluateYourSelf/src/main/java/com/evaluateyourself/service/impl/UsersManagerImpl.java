@@ -4,7 +4,9 @@
 package com.evaluateyourself.service.impl;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +28,8 @@ public class UsersManagerImpl implements UsersManager {
 
 	@Override
 	@Transactional
-	public void create(Users user) {
-		usersdao.create(user);
+	public Users create(Users user) {
+		return usersdao.create(user);
 	}
 
 	@Override
@@ -44,14 +46,21 @@ public class UsersManagerImpl implements UsersManager {
 	
 	@Override
 	@Transactional(readOnly=true)
-	public List<Users> getAll() {
-		return usersdao.getAll();
+	public Map<Integer,Users> getAll() {
+		
+		Map<Integer,Users> result = new HashMap<Integer,Users>();
+		List<Users> resultList = usersdao.getAll();
+		for(Users usr: resultList){
+			result.put(usr.getUsid(), usr);
+		}
+		return result;
 	}
 
 	@Override
 	@Transactional
-	public void update(Users user) {
+	public Users update(Users user) {
 		usersdao.update(user);
+		return user;
 	}
 
 	@Override

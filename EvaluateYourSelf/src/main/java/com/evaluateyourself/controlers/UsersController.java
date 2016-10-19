@@ -3,15 +3,16 @@
  */
 package com.evaluateyourself.controlers;
 
-import java.util.List;
+
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.evaluateyourself.model.Users;
 import com.evaluateyourself.service.UsersManager;
@@ -20,11 +21,37 @@ import com.evaluateyourself.service.UsersManager;
  * @author Mateusz
  *
  */
-@Controller
+@RestController
 @RequestMapping(value = "/users")
 public class UsersController {
 
 	@Autowired
 	UsersManager usersManager;
-
+	
+	@RequestMapping(value = "/getall", method = RequestMethod.GET)
+	public Map<Integer,Users> getAllUsers(){
+		return usersManager.getAll();
+	}
+	
+	@RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
+	public Users get(@RequestParam(value="user_id") Integer id){
+		return usersManager.get(id);
+	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public Users create(@RequestBody Users user){
+		return usersManager.create(user);
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public void delete(@RequestBody Users user){
+		usersManager.delete(user);
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
+	public Users update(@RequestBody Users user){
+		return usersManager.update(user);
+	}
+	
+	
 }

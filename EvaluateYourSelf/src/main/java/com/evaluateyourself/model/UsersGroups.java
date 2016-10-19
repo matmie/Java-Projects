@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,12 +29,10 @@ public class UsersGroups implements Serializable {
 
 	@Id
 	@Column(name = "ugid", nullable = false, unique = false)
-	@SequenceGenerator(name = "usersgroupsugidseq")
+	@GeneratedValue
 	private int ugid;
 	
-	/**
-	 * Mamy relacje wiele do jednego dla kolumny ugusid która bêdzie przechowywa³a id z tabeli USERS.  
-	 */
+
 	@ManyToOne(targetEntity = com.evaluateyourself.model.Users.class, optional = false)
 	@JoinColumn(name = "ugusid", referencedColumnName = "usid", nullable = false, insertable = true, updatable = true)
 	private Users ugusid;

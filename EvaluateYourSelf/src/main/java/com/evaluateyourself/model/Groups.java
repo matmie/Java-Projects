@@ -9,6 +9,7 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -28,21 +29,12 @@ public class Groups implements Serializable {
 
 	@Id
 	@Column(name = "grid", nullable = false, unique = true)
-	@SequenceGenerator(name = "groupsgridseq")
+	@GeneratedValue
 	private int grid;
 
 	@Column(name = "grname", length = 45, insertable = true, updatable = true, unique = true)
 	private String name;
 
-	/**
-	 * To tabela USERSGROUPS zawiera pole uggrid które odnosi siê do pola grid w
-	 * tej klasie, dlatego te¿ z poziomu tej klasy: 1) Nie tworzymy pola w bazie
-	 * za pomoc¹ adnotacji JoinColumn bo mamy pole grid 2) Wiemy, ¿e je¿eli
-	 * usuniemy grupê to nale¿y tak¿e usun¹c wszystkie wpisy z tabeli
-	 * USERSGROUPS, do tego celu u¿ywamy mapowania mappedBy które wskazuje na
-	 * zadeklarowane pole w bazie w tabeli USERSGROUPS oraz deklaracji cascade,
-	 * która mówi w tym przpadku, o usuwaniu wszystkich powi¹zañ
-	 */
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "uggrid")
 	private Collection<UsersGroups> usersgroupscoll;
 	

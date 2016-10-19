@@ -5,8 +5,6 @@ package com.evaluateyourself.service;
 
 import java.util.Locale;
 
-import com.evaluateyourself.model.MessagesResources;
-
 /**
  * @author Mateusz Miernik [mateusz.miernik86@gmail.com] Interface for
  *         {@link com.evaluateyourself.model.MessagesResources

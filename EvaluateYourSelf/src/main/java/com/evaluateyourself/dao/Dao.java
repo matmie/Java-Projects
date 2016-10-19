@@ -17,7 +17,7 @@ public interface Dao<T extends Object> {
 	 * Create T domain object representation into DataSource 
 	 * @param t Model object
 	 */
-	void create(T t);
+	T create(T t);
 	/**
 	 * Method search for object, which has primary_key = id
 	 * @param id Specified id for T model object for search

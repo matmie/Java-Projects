@@ -17,38 +17,11 @@
 						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
-	<!-- This produces a container-managed EntityManagerFactory; rather than 
-		application-managed EntityManagerFactory as in case of LocalEntityManagerFactoryBean -->
-	<!-- <bean id="entintyManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="myDataSource" />
-		This makes /META-INF/persistence.xml is no longer necessary
-		<property name="packagesToScan" value="com.evaluateyourself.model" />
-		JpaVendorAdapter implementation for Hibernate EntityManager. Exposes 
-			Hibernate's persistence provider and EntityManager extension interface
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true" />
-			</bean>
-		</property>
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-				<prop key="hibernate.default_schema">public</prop>
-			</props>
-		</property>
-	</bean> -->
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	<bean
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<!-- sun:DataSource(I) wywodza sie liczne klasy do oznaczenia zbioru danych 
-		rekomendowane do obsługi puli połączeń są ComboPooledDataSource, BasicDataSource 
-		
-	-->
 	<bean id="myDataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${driverClassName}" />
@@ -59,12 +32,7 @@
 		<property name="maxIdle" value="5" />
 		<property name="maxWait" value="5000" />
 	</bean>
-		<!-- <property name="initialPoolSize" value="3"></property> <property name="minPoolSize" 
-			value="5"></property> <property name="maxPoolSize" value="30"></property> 
-			<property name="acquireIncrement" value="1"></property> -->
-		<!-- com.mchange.v2.c3p0.ComboPooledDataSource -->
-		<!-- <property name="properties"> <props> <prop key="socketTimeout">10</prop> 
-			</props> </property> -->
+	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource" />
 		<property name="packagesToScan" value="com.evaluateyourself.model"/>
