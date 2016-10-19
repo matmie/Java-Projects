@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
-import { LanguagesService } from '../services/languages.service';
-import { LanguageControllsResp } from '../structures/languagescontrolls.respstructure';
+import { Component } from '@angular/core';
 
 import { AppSettings } from '../app.settings';
 
-import { Observable } from 'rxjs/Observable';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 @Component({
     moduleId : module.id,
@@ -13,20 +10,10 @@ import { Observable } from 'rxjs/Observable';
     templateUrl : './header.component.html',
     styleUrls : [ './header.component.css' ]
 })
-export class HeaderComponent implements OnInit{
-    langauagesControlls : Observable<LanguageControllsResp[]>;
+export class HeaderComponent{
 
-    ngOnInit(): void {
-    	this.languagesService.trySendRequest('header', `${AppSettings._language}`);
-    	this.langauagesControlls = this.languagesService.getControllsNamesByParentAndLanguage('header', `${AppSettings._language}`);
-    	console.log(this.langauagesControlls);
+    constructor(private translate: TranslateService){
+    	translate.addLangs(['pl', 'en']);
+    	translate.use(AppSettings._language);
     }
-
-    constructor(private languagesService: LanguagesService){
-
-    }
-
-	public header:{title:string, 
-		              buttons: {signin:string, signup:string}
-		          } = {title:'Evaluate YourSelf2', buttons : { signin : 'Zaloguj', signup : 'Rejestracja'}} ; 
 }

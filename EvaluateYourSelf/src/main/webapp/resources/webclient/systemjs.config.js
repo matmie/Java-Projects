@@ -22,6 +22,7 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       'ng2-cookies': 'npm:ng2-cookies',
+      'ng2-translate': 'npm:ng2-translate/bundles',
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
@@ -39,7 +40,8 @@
         main: './index.js',
         defaultExtension: 'js'
       },
-      'ng2-cookies' :{ defaultExtension : 'js'}
+      'ng2-cookies' :{ defaultExtension : 'js'},
+      'ng2-translate' :{main: 'ng2-translate.js', defaultExtension : 'js'}
 
     }
   });

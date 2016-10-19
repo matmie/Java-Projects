@@ -1,0 +1,9 @@
+{
+  "HEADER": {
+    "TITLE": "Evaluate YourSelf",
+    "BUTTONS": {
+    	"SIGNUP": "Signup",
+    	"SIGNIN": "Signin"
+    } 
+  }
+}

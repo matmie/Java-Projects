@@ -1,0 +1,61 @@
+
+
+<div class="container">
+	<div class="header">
+		<h3 class="text-muted">
+			{{'USERS.TITLE' | translate}}
+		</h3>
+	</div>
+</div>
+<section class="container">
+	<div>
+		<table class="table table-hover">
+			<tr>
+				<th>{{'USERS.TABLE.HEADER.FIRSTNAME' | translate}}</th>
+				<th>{{'USERS.TABLE.HEADER.SECONDNAME' | translate}}</th>
+				<th>{{'USERS.TABLE.HEADER.EMAILADDRESS' | translate}}</th>
+				<th>{{'USERS.TABLE.HEADER.LOGIN' | translate}}</th>
+			</tr>
+			<tr *ngFor="let user of users">
+				<td id="id_{{user.usid}}">{{user.usfirstname}}</td>
+				<td>{{user.uslastname}}</td>
+				<td>{{user.usemail}}</td>
+				<td>{{user.uslogin}}</td>
+				<td><a href="" class="label label-danger"> <span
+					class="glyphicon glyphicon-remove"></span>{{'USERS.TABLE.BUTTONS.DELETE' | translate}}
+				</a>
+				<a href="" class="label label-warning" style="margin-left : 10px;"> <span
+					class="glyphicon glyphicon-ok"></span>{{'USERS.TABLE.BUTTONS.UPDATE' | translate}}
+				</a></td>
+			</tr>
+					<!-- <tr id="addingSection" style="display:none;">
+						<td>
+							<input id="inputID" type="number" ng-model="choirMemberId" required="required" class ="form:input-large" style="width:70px; display:none;"  placeholder="<spring:message code="choirMembersList.choirMember.id"/>"/>
+						</td>
+						<td>
+							<input id="inputNameId" type="text" ng-model="choirMemberName" required="required" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.name"/>"/>
+						</td>
+						<td>
+							<input type="text" ng-model="choirMemberPhoneNumber" required="required" class = "form:input-large" placeholder="<spring:message code="choirMembersList.choirMember.phone"/>"/>
+						</td>
+						<td>
+							<a id="aAdd" href="" class="label label-success" style="margin-left : 10px;"
+								ng-click="addToChoirMembers()"> <span
+									class="glyphicon glyphicon-ok"></span><spring:message code="choirMembersList.choirMember.add" />
+							</a>
+							<a id="aUpdate" href="" class="label label-success" style="margin-left : 10px;"
+								ng-click="updateChoirMembers()"> <span
+									class="glyphicon glyphicon-ok"></span><spring:message code="choirMembersList.choirMember.add" />
+							</a>
+							<a href="" class="label label-danger" style="margin-left : 10px;"
+								ng-click="cancelAddingMember()"> <span
+									class="glyphicon glyphicon-remove"></span><spring:message code="choirMembersList.choirMember.cancel" />
+							</a>
+						</td>
+					</tr> -->
+		</table>
+		<a id="addingButton" href="" class="label label-primary"> <span
+					class="glyphicon glyphicon-plus"></span>{{'USERS.TABLE.BUTTONS.ADD' | translate}}
+		</a>
+	</div>
+</section>

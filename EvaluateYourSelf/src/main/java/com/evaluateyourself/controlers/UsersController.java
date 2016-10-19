@@ -33,7 +33,7 @@ public class UsersController {
 		return usersManager.getAll();
 	}
 	
-	@RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{user_id}", method = RequestMethod.GET)
 	public Users get(@RequestParam(value="user_id") Integer id){
 		return usersManager.get(id);
 	}

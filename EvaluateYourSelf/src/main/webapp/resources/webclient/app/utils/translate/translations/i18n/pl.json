@@ -1,0 +1,25 @@
+{
+  "HEADER": {
+    	"TITLE": "Evaluate YourSelf",
+    	"BUTTONS": {
+    		"SIGNUP": "Rejestracja",
+    		"SIGNIN": "Logowanie"
+   		 }
+   	},
+   "USERS" : {
+   	   "TITLE" : "Panel Administracyjny - Użytkownicy",
+   	   "TABLE" : {
+   	   		"HEADER": {
+   	   			"FIRSTNAME" : "Imię",
+   	   			"SECONDNAME" : "Nazwisko",
+   	   			"EMAILADDRESS" : "Adres E-mail",
+   	   			"LOGIN" : "Login"
+   	   		},
+   	   		"BUTTONS" : {
+   	   			"DELETE" : "Usuń",
+   	   			"UPDATE" : "Modyfikuj",
+   	   			"ADD" : "Dodaj"
+   	   		}
+   	   }
+   } 
+}
