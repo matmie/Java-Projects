@@ -1,0 +1,25 @@
+<div class="container my-container">
+    <div class="form-title">
+		<p>{{'LOGIN.FORM.TITLE' | translate}}</p>
+	</div>	
+	<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+		<div class="form-group">
+			<label for="email">{{'LOGIN.FORM.INPUTS.EMAILLOGIN.LABEL' | translate}}</label>
+			<input type="text" class="form-control" id="email" [(ngModel)]="user.email" name="email" required #name="ngModel" />
+			<div [hidden]="name.valid || name.pristine" class="alert alert-danger my-alert">
+				{{'LOGIN.FORM.INPUTS.EMAILLOGIN.INVALID' | translate}}
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password">{{'LOGIN.FORM.INPUTS.PASSWORD.LABEL' | translate}}</label>
+			<input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" required #name2="ngModel" /> 
+			<div [hidden]="name2.valid || name2.pristine" class="alert alert-danger my-alert">
+				{{'LOGIN.FORM.INPUTS.PASSWORD.INVALID' | translate}}
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">{{'LOGIN.FORM.BUTTONS.SUBMIT' | translate}}</button>
+
+	</form>
+
+</div>

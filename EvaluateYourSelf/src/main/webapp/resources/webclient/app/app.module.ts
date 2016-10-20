@@ -16,6 +16,10 @@ import { LearningComponent } from './learning/learning.component';
 import { DropdownComponent } from './learning/ng2-bootstrap/dropdown/dropdown.component';
 import { ButtonComponent } from './learning/ng2-bootstrap/button/button.component';
 import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './login-angular/login.component';
+import { RegisterComponent } from './register-angular/register.component';
+
+import { routing } from './app.routing'
 
 //PROVIDERS IMPORTS
 
@@ -25,6 +29,7 @@ import { UsersComponent } from './users/users.component';
                         BrowserModule,
                         FormsModule,
                         HttpModule,
+                        routing,
                         TranslateModule.forRoot({
                           provide: TranslateLoader,
                           useFactory: (http: Http) => new TranslateStaticLoader(http, '/app/utils/translate/translations/i18n', '.json'),
@@ -38,6 +43,8 @@ import { UsersComponent } from './users/users.component';
                         FooterComponent,
                         HeaderComponent,
                         LearningComponent,
+                        LoginComponent,
+                        RegisterComponent,
                         UsersComponent
                    ],
     bootstrap :    [

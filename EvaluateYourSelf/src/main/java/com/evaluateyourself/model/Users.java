@@ -28,7 +28,7 @@ import javax.persistence.UniqueConstraint;
  * This class represents information about single user. 
  */
 @Entity
-@Table(name="users", schema="public", uniqueConstraints= @UniqueConstraint(columnNames = {"uslogin"}))
+@Table(name="users", schema="public", uniqueConstraints= @UniqueConstraint(columnNames = {"usemail"}))
 public class Users implements Serializable{
 	
 	private static final long serialVersionUID = -3041495761267330339L;
@@ -63,7 +63,7 @@ public class Users implements Serializable{
 	/**
 	 * User login to system.
 	 */
-	@Column(name="uslogin", nullable=false, length=40, insertable=true, updatable=false)
+	@Column(name="uslogin", length=40, insertable=true, updatable=false)
 	private String uslogin;
 	
 	/**

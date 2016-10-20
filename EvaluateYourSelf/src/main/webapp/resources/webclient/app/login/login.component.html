@@ -1,0 +1,28 @@
+<div class="container" >
+    <div class="title">
+        <p>{{'LOGIN.FORM.TITLE' | translate}}</p>
+    </div> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="input-field col s12">
+                <input [(ngModel)]="user.email" id="email" 
+                type="email" class="validate" required>
+                <label for="email" data-error="wrong" data-success="right">{{'LOGIN.FORM.LABELS.EMAILLOGIN' | translate}}</label>
+            </div>
+        </div>
+
+        <div class="row second-row">
+            <div class="input-field col s12">
+                <input [(ngModel)]="user.password" id="password" 
+                type="password" class="validate" required>
+                <label for="password">{{'LOGIN.FORM.LABELS.PASSWORD' | translate}}</label>
+            </div>
+        </div>
+
+        <span>{{errorMsg}}</span>
+        <button (click)="login()" 
+        class="btn waves-effect waves-light" 
+        type="submit" name="action">{{'LOGIN.FORM.BUTTONS.SUBMIT' | translate}}</button>
+        <a class="link" href="#">{{'LOGIN.FORM.FORGOT' | translate}}</a>
+    </div>
+</div>

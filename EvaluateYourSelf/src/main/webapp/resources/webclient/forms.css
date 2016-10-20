@@ -1,0 +1,42 @@
+form{
+	padding: 15px;
+}
+
+.my-container{
+	width:340px;
+	border-radius: 2px 2px 2px 2px;
+    -moz-border-radius: 2px 2px 2px 2px;
+    -webkit-border-radius: 2px 2px 2px 2px;
+    border: 1px solid #ddd;
+}
+
+.form-title{
+	border-radius: 2px 2px 0px 0px;
+    -moz-border-radius: 2px 2px 0px 0px;
+    -webkit-border-radius: 2px 2px 0px 0px;
+	height: 50px;
+	background: #2ab7a9;
+	width: inherit;
+	margin-left:-16px;
+}
+.form-title p {
+	font-size: 19px;
+	font-weight: bold;
+	font-family: Cambria, Georgia;
+	color: #FFF;
+	text-align: center;
+	padding-top: 17px;
+}
+
+.ng-valid[required], .ng-valid.required{
+	border-left: 5px solid #2ab7a9; 
+}
+
+.ng-invalid:not(form) {
+	border-left : 5px solid #a94442;
+}
+
+.my-alert {
+	height: :33px !important;
+	padding:5px !important;
+}

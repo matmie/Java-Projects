@@ -4,7 +4,17 @@
     	"BUTTONS": {
     		"SIGNUP": "Rejestracja",
     		"SIGNIN": "Logowanie"
-   		 }
+   		 },
+       "NAVIGATION" : {
+          "BUTTONS": {
+              "HOME": "Strona główna",
+              "MYPROFILE": "Moje konto",
+              "TOOLS" : "Narzędzia",
+              "ABOUT" : "O portalu",
+              "BLOG" : "Blog",
+              "ADMINISTRATION" : "Panel administracyjny"
+          }
+       }
    	},
    "USERS" : {
    	   "TITLE" : "Panel Administracyjny - Użytkownicy",
@@ -21,5 +31,44 @@
    	   			"ADD" : "Dodaj"
    	   		}
    	   }
-   } 
+   },
+   "LOGIN" :{
+      "FORM": {
+        "TITLE" : "Logowanie...",
+        "INPUTS" : {
+                "EMAILLOGIN" : { 
+                      "LABEL" : "Adres e-mail lub nazwa użytkownika",
+                      "INVALID" : "To pole nie może być puste"
+                  },
+                "PASSWORD" : {
+                      "LABEL" : "Hasło",
+                      "INVALID": "To pole nie może być puste"
+                }
+        },
+        
+        "BUTTONS": {
+            "SUBMIT" : "Zaloguj"
+        },
+         "FORGOT" : "Zapomniałeś hasła?"
+      } 
+   }, 
+   "REGISTER" :{
+      "FORM": {
+        "TITLE" : "Rejestracja użytkownika",
+        "INPUTS" : {
+                "EMAILLOGIN" : { 
+                      "LABEL" : "Adres e-mail",
+                      "INVALID" : "Proszę wprowadzić prawidłowy adres e-mail"
+                  },
+                "PASSWORD" : {
+                      "LABEL" : "Hasło",
+                      "INVALID": "To pole nie może być puste"
+                }
+        },
+        
+        "BUTTONS": {
+            "SUBMIT" : "Zarejestruj"
+        }
+      } 
+   }
 }
