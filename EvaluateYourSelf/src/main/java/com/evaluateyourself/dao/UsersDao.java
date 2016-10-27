@@ -7,5 +7,6 @@ import com.evaluateyourself.model.*;
  */
 public interface UsersDao extends Dao<Users>{
 	
-    public Users findByLogin(String login);
+    public Users findByEmail(String email);
+    public Users findByEmailOrLoginAndPassword(String encodedEmail, String encodedPassword);
 }

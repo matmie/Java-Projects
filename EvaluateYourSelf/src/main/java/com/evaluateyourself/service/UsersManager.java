@@ -69,5 +69,7 @@ public interface UsersManager {
 	 */
 	boolean exist(Serializable id);
     
+	Users registerUser(Users usr);
+	
    
 }

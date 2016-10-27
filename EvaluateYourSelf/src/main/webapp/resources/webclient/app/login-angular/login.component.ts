@@ -1,26 +1,25 @@
-import {Component} from '@angular/core';
-import {AuntenticationService, UserForLogin} from '../login/authentication.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
 	moduleId : module.id,
 	selector : 'login',
-	providers : [AuntenticationService],
+	providers : [AuthenticationService],
 	templateUrl : './login.component.html',
 	styleUrls : ['./login.component.css']
 })
 export class LoginComponent{
 
-	user = new UserForLogin('','');
+	constructor(private _authService:AuthenticationService, private _router: Router){}
 
-	submitted:boolean = false;
-
-	constructor(private _authService:AuntenticationService){}
-
-	onSubmit() { 
-		this.submitted = true; 
+	onSubmit(email,password) { 
+		console.log(email,password)
+		this._authService.login(email,password).subscribe((result) => {
+			if(result){
+				this._router.navigate(['']);
+			}
+		});
 	}
 
-	getDiagnostic() {
-		return JSON.stringify(this.user);
-	}
 }

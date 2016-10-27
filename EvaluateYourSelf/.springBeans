@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[3.7.3.201602250914-RELEASE]]></pluginVersion>
+	<pluginVersion><![CDATA[3.8.1.201607290748-RELEASE]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+		<config>src/main/webapp/WEB-INF/springContexts/security.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/springContexts/appServlet/servlet-context.xml</config>
+		<config>src/main/webapp/WEB-INF/springContexts/root-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

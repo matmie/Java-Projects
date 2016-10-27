@@ -23,7 +23,7 @@ export class AuntenticationService {
 	login(user:UserForLogin){
 		var authenticatedUser = users.find(u => u.email === user.email);
 		if(authenticatedUser && authenticatedUser.password === user.password){
-			localStorage.setItem("user", authenticatedUser);
+			//localStorage.setItem("user", authenticatedUser);
 			this._router.navigate(['Home']);
 			return true;
 		}
