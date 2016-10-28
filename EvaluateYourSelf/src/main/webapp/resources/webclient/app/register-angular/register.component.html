@@ -2,26 +2,38 @@
    <div class="form-title">
      <p>{{'REGISTER.FORM.TITLE' | translate}}</p>
    </div>
-   <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+   <form (ngSubmit)="onSubmit(user.usemail, user.uspassword)" #registerForm="ngForm" >
    		<div class="form-group">
    			<label for="email">{{'REGISTER.FORM.INPUTS.EMAILLOGIN.LABEL' | translate}}</label> 
-   			<input type="email" class="form-control" id="email" [(ngModel)]="user.usemail" name="usemail" required #usemail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
-   			<div [hidden]="usemail.valid || usemail.pristine" class="alert alert-danger my-alert">
+   			<input type="email" class="form-control" id="email" [(ngModel)]="user.usemail" name="usemail" required #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+   			<div [hidden]="email.valid || email.pristine" class="alert alert-danger my-alert">
    				{{'REGISTER.FORM.INPUTS.EMAILLOGIN.INVALID' | translate}}
    			</div>
-<!--    			<div [hidden]="usemail.valid" class="alert alert-danger my-alert">
-   				{{'REGISTER.FORM.INPUTS.EMAILLOGIN.INVALID' | translate}}
-   			</div> -->
+        	<div [hidden]="!emailError" class="alert alert-danger my-alert">
+   					<span > {{'REGISTER.FORM.INPUTS.EMAILLOGIN.EXIST' | translate}}</span>
+   					<span class="glyphicon glyphicon-remove canClick" (click)="cancelEmailError()"></span>
+   			</div> 
    		</div>
 
    		<div class="form-group">
    			<label for="uspassword">{{'REGISTER.FORM.INPUTS.PASSWORD.LABEL' | translate}}</label>
-   			<input type="password" class="form-control" id="password" [(ngModel)]="user.uspassword" name="uspassword" required #uspassword="ngModel" />
-   			<div [hidden]="uspassword.valid || uspassword.pristine" class="alert alert-danger my-alert">
+   			<input type="password" class="form-control" id="password" [(ngModel)]="user.uspassword" name="uspassword" required #password="ngModel" pattern="[a-zA-Z0-9!@#\$%\^\*\(\)\+=\{\}\[\]]{8,40}" />
+   			<div [hidden]="password.valid || password.pristine" class="alert alert-danger my-alert">
    				{{'REGISTER.FORM.INPUTS.PASSWORD.INVALID' | translate}}
+   			</div>
+   			<password-strength-bar [passwordToCheck]="user.uspassword" [minLength]="8"></password-strength-bar>
+   		</div>
+   		<div class="form-group">
+   			<label for="passwordConfirm">{{'REGISTER.FORM.INPUTS.PASSWORDCONFIRM.LABEL' | translate}}</label>
+   			<input type="password" class="form-control" id="passwordConfirm" [(ngModel)]="user.uspasswordConfirm" name="uspasswordConfirm" required #passwordConfirm="ngModel"  pattern="[a-zA-Z0-9!@#\$%\^\*\(\)\+=\{\}\[\]]{8,40}" />
+   			<div [hidden]="passwordConfirm.valid || passwordConfirm.pristine" class="alert alert-danger my-alert">
+   				{{'REGISTER.FORM.INPUTS.PASSWORDCONFIRM.INVALID' | translate}}
+   			</div>
+   			<div [hidden]="(passwordConfirm.value == password.value) || passwordConfirm.pristine" class="alert alert-danger my-alert">
+   				{{'REGISTER.FORM.INPUTS.PASSWORDCONFIRM.MUSTMATCH' | translate}}
    			</div>
    		</div>
 
-   		<button type="submit" class="btn btn-default" [disabled]="!registerForm.form.valid">{{'REGISTER.FORM.BUTTONS.SUBMIT' | translate}}</button>
+   		<button type="submit" class="btn btn-default" [disabled]="!registerForm.form.valid || (passwordConfirm.value != password.value)">{{'REGISTER.FORM.BUTTONS.SUBMIT' | translate}}</button>
    </form>
 </div>

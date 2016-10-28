@@ -1,12 +1,11 @@
 package com.evaluateyourself.exceptions;
 
-import javax.naming.directory.InvalidAttributesException;
-
-public class UserWithEmailExist extends InvalidAttributesException {
+public class UserWithEmailExist extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
-    public UserWithEmailExist(String msg){
-    	super(msg);
-    }
+	public Integer code = 0;
+	public UserWithEmailExist(String message){
+		super(message);
+	}
 }

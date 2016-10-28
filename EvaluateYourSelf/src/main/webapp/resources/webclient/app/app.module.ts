@@ -17,6 +17,7 @@ import { DropdownComponent } from './learning/ng2-bootstrap/dropdown/dropdown.co
 import { ButtonComponent } from './learning/ng2-bootstrap/button/button.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login-angular/login.component';
+import { PassWordTrengthBarComponent } from './utils/password-strength-bar/password-strength-bar.component';
 import { RegisterComponent } from './register-angular/register.component';
 
 import { routing } from './app.routing'
@@ -44,6 +45,7 @@ import { routing } from './app.routing'
                         HeaderComponent,
                         LearningComponent,
                         LoginComponent,
+                        PassWordTrengthBarComponent,
                         RegisterComponent,
                         UsersComponent
                    ],

@@ -51,14 +51,14 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 		Users usr = new Users();
 		usr.setUsemail("mateuch@wp.pl");
 		usr.setUsid(23);
-		usr.setUsrole("admin");
+		usr.setUsroles("admin");
 		logger.info("Parsuje przykladowy token: " + jwtUtil.generateToken(usr));
 		
 		if(parsedUser == null){
 			throw new JwtTokenMalformedException("JWT token is not valid");
 		}
 		
-		List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(parsedUser.getUsrole());
+		List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(parsedUser.getUsroles());
 		
 		return new AuthenticatedUser(parsedUser.getUsid(), parsedUser.getUsemail(), token, authorityList);
 	}

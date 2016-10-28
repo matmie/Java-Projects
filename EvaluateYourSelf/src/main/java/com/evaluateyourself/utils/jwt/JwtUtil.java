@@ -35,7 +35,7 @@ public class JwtUtil {
 
             Users u = new Users();
             u.setUsemail(body.getSubject());
-            u.setUsrole((String)body.get("role"));
+            u.setUsroles((String)body.get("roles"));
 
             return u;
 
@@ -53,7 +53,7 @@ public class JwtUtil {
      */
     public String generateToken(Users u) {
         Claims claims = Jwts.claims().setSubject(u.getUsemail());
-        claims.put("role", u.getUsrole()); 
+        claims.put("roles", u.getUsroles()); 
 
         return Jwts.builder()
                 .setClaims(claims)

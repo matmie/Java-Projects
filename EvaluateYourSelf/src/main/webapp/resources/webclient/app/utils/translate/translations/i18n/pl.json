@@ -58,11 +58,17 @@
         "INPUTS" : {
                 "EMAILLOGIN" : { 
                       "LABEL" : "Adres e-mail",
-                      "INVALID" : "Proszę wprowadzić prawidłowy adres e-mail"
+                      "INVALID" : "Proszę wprowadzić prawidłowy adres e-mail",
+                      "EXIST" : "Podany email jest już zajęty"
                   },
                 "PASSWORD" : {
                       "LABEL" : "Hasło",
-                      "INVALID": "To pole nie może być puste"
+                      "INVALID": "Dozwolone znaki: małe i duże litery, cyfry oraz !@#$%^*()+={}[]. Minimalnie 8 znaków. Maksymalnie 40"
+                },
+                "PASSWORDCONFIRM":{
+                      "LABEL" : "Powtórz hasło",
+                      "INVALID" : "Dozwolone znaki: małe i duże litery, cyfry oraz !@#$%^*()+={}[]. Minimalnie 8 znaków. Maksymalnie 40",
+                      "MUSTMATCH" : "Hasła muszą być takie same"
                 }
         },
         
@@ -70,5 +76,10 @@
             "SUBMIT" : "Zarejestruj"
         }
       } 
+   },
+   "UTILS" : {
+      "PASSWORDSTRENGTH" : {
+          "TITLE" : "Siła hasła"
+      }
    }
 }

@@ -40,3 +40,7 @@ form{
 	height: :33px !important;
 	padding:5px !important;
 }
+.canClick{
+	cursor: pointer;
+	top:2px;
+}
